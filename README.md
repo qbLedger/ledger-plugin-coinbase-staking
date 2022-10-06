@@ -19,9 +19,6 @@ from Ledger.
 ![step 3](./tests/snapshots/nanos_deposit/00003.png)
 ![step 4](./tests/snapshots/nanos_deposit/00004.png)
 ![step 5](./tests/snapshots/nanos_deposit/00005.png)
-![step 6](./tests/snapshots/nanos_deposit/00006.png)
-![step 7](./tests/snapshots/nanos_deposit/00007.png)
-![step 8](./tests/snapshots/nanos_deposit/00008.png)
 
 #### Withdraw Execution and Consensus Layer Fees
 
@@ -63,7 +60,6 @@ from Ledger.
 ![step 3](./tests/snapshots/nanox_deposit/00003.png)
 ![step 4](./tests/snapshots/nanox_deposit/00004.png)
 ![step 5](./tests/snapshots/nanox_deposit/00005.png)
-![step 6](./tests/snapshots/nanox_deposit/00006.png)
 
 #### Withdraw Execution and Consensus Layer Fees
 
