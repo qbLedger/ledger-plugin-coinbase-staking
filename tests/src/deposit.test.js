@@ -5,7 +5,7 @@ import { ethers } from "ethers";
 import { parseEther, parseUnits} from "ethers/lib/utils";
 import { ledgerService } from '@ledgerhq/hw-app-eth';
 
-const contractAddr = "0x393216dfc16b9115936ffb78c87888817e63f291";
+const contractAddr = "0xe8ff2a04837aac535199eecb5ece52b2735b3543";
 
 const pluginName = "kiln";
 const abi_path = `../${pluginName}/abis/` + contractAddr + '.json';
