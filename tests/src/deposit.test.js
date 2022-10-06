@@ -20,7 +20,7 @@ nano_models.forEach(function(model) {
         let unsignedTx = genericTx;
 
         unsignedTx.to = contractAddr;
-        unsignedTx.data = '0xd0e30db0';
+        unsignedTx.data = data;
         unsignedTx.value = parseEther("32");
 
         const serializedTx = ethers.utils.serializeTransaction(unsignedTx).slice(2);
