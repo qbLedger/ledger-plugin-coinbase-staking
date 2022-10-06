@@ -34,17 +34,17 @@ void handle_init_contract(void *parameters) {
         return;
     }
 
+    msg->result = ETH_PLUGIN_RESULT_OK;
+
     switch (context->selectorIndex) {
         case KILN_DEPOSIT:
             context->next_param = DEPOSIT_UNEXPECTED_PARAMETER;
-            msg->result = ETH_PLUGIN_RESULT_OK;
             break;
 
         case KILN_WITHDRAW:
         case KILN_WITHDRAW_EL:
         case KILN_WITHDRAW_CL:
             context->next_param = WITHDRAW_VALIDATION_OFFSET;
-            msg->result = ETH_PLUGIN_RESULT_OK;
             break;
 
         default:

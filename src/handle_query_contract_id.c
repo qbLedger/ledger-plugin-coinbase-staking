@@ -6,17 +6,17 @@ void handle_query_contract_id(void *parameters) {
 
     strlcpy(msg->name, PLUGIN_NAME, msg->nameLength);
 
+    msg->result = ETH_PLUGIN_RESULT_OK;
+
     switch (context->selectorIndex) {
         case KILN_DEPOSIT:
             strlcpy(msg->version, "Stake", msg->versionLength);
-            msg->result = ETH_PLUGIN_RESULT_OK;
             break;
 
         case KILN_WITHDRAW:
         case KILN_WITHDRAW_EL:
         case KILN_WITHDRAW_CL:
             strlcpy(msg->version, "Withdraw", msg->versionLength);
-            msg->result = ETH_PLUGIN_RESULT_OK;
             break;
 
         default:
