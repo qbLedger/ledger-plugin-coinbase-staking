@@ -1,92 +1,69 @@
+# Badges
+
+[![Code style check](https://github.com/LedgerHQ/app-plugin-kiln/actions/workflows/lint-workflow.yml/badge.svg)](https://github.com/LedgerHQ/app-plugin-kiln/actions/workflows/lint-workflow.yml)
+[![Compilation & tests](https://github.com/LedgerHQ/app-plugin-kiln/actions/workflows/ci-workflow.yml/badge.svg)](https://github.com/LedgerHQ/app-plugin-kiln/actions/workflows/ci-workflow.yml)
+
 # app-plugin-kiln
 
 ![Kiln Logo](https://uploads-ssl.webflow.com/625db3caa8abd6c22d5f0ce3/6260572336892a801afd71e3_Kiln_Logo-Transparent-Dark.svg)
 
-This plug-in is compatible with Nano S / X devices, it enables to interact in a
-secure wait with the Kiln deposit smart contract to stake Ethereum. It is based
-on the [boilerplate example](https://github.com/LedgerHQ/app-plugin-boilerplate)
-from Ledger.
+This plug-in is compatible with Nano S / X devices, it enables to
+interact in a secure wait with the Kiln deposit smart contract to
+stake Ethereum.
 
-## Existing Flows
+## Prerequisite
 
-### Nano S
+Clone the plugin to a new folder.
 
-#### Deposit
+```shell
+git clone https://github.com/LedgerHQ/app-plugin-kiln.git
+```
 
-![step 0](./tests/snapshots/nanos_deposit/00000.png)
-![step 1](./tests/snapshots/nanos_deposit/00001.png)
-![step 2](./tests/snapshots/nanos_deposit/00002.png)
-![step 3](./tests/snapshots/nanos_deposit/00003.png)
-![step 4](./tests/snapshots/nanos_deposit/00004.png)
-![step 5](./tests/snapshots/nanos_deposit/00005.png)
+Then in the same folder clone two more repositories, which is the plugin-tools and app-ethereum.
 
-#### Withdraw Execution and Consensus Layer Fees
+```shell
+git clone https://github.com/LedgerHQ/plugin-tools.git                          #plugin-tools
+git clone --recurse-submodules https://github.com/LedgerHQ/app-ethereum.git     #app-ethereum
+```
+## Documentation
 
-![step 0](./tests/snapshots/nanos_withdraw/00000.png)
-![step 1](./tests/snapshots/nanos_withdraw/00001.png)
-![step 2](./tests/snapshots/nanos_withdraw/00002.png)
-![step 3](./tests/snapshots/nanos_withdraw/00003.png)
-![step 4](./tests/snapshots/nanos_withdraw/00004.png)
-![step 5](./tests/snapshots/nanos_withdraw/00005.png)
-![step 6](./tests/snapshots/nanos_withdraw/00006.png)
+Need more information about the interface, the architecture, or general stuff about ethereum plugins? You can find more about them in the [ethereum-app documentation](https://github.com/LedgerHQ/app-ethereum/blob/master/doc/ethapp_plugins.asc).
 
-#### Withdraw Execution Layer Fees
+## Smart Contracts
 
-![step 0](./tests/snapshots/nanos_withdrawEL/00000.png)
-![step 1](./tests/snapshots/nanos_withdrawEL/00001.png)
-![step 2](./tests/snapshots/nanos_withdrawEL/00002.png)
-![step 3](./tests/snapshots/nanos_withdrawEL/00003.png)
-![step 4](./tests/snapshots/nanos_withdrawEL/00004.png)
-![step 5](./tests/snapshots/nanos_withdrawEL/00005.png)
-![step 6](./tests/snapshots/nanos_withdrawEL/00006.png)
+Smart contracts covered by this plugin are:
 
-#### Withdraw Consensus Layer Fees
+| Network | Version | Smart Contract |
+| ---       | --- | --- |
+| Goerli   | V0  | `0xe8Ff2a04837aac535199eEcB5ecE52b2735b3543`|
 
-![step 0](./tests/snapshots/nanos_withdrawCL/00000.png)
-![step 1](./tests/snapshots/nanos_withdrawCL/00001.png)
-![step 2](./tests/snapshots/nanos_withdrawCL/00002.png)
-![step 3](./tests/snapshots/nanos_withdrawCL/00003.png)
-![step 4](./tests/snapshots/nanos_withdrawCL/00004.png)
-![step 5](./tests/snapshots/nanos_withdrawCL/00005.png)
-![step 6](./tests/snapshots/nanos_withdrawCL/00006.png)
 
-### Nano X
+## Build
 
-#### Deposit
+Go to the plugin-tools folder and run the "./start" script.
+```shell
+cd plugin-tools  # go to plugin folder
+./start.sh       # run the script start.sh
+```
+The script will build a docker image and attach a console.
+When the docker image is running go to the "app-plugin-kiln" folder and build the ".elf" files.
+```shell
+cd app-plugin-kiln/tests        # go to the tests folder in app-plugin-kiln
+./build_local_test_elfs.sh      # run the script build_local_test_elfs.sh
+```
 
-![step 0](./tests/snapshots/nanox_deposit/00000.png)
-![step 1](./tests/snapshots/nanox_deposit/00001.png)
-![step 2](./tests/snapshots/nanox_deposit/00002.png)
-![step 3](./tests/snapshots/nanox_deposit/00003.png)
-![step 4](./tests/snapshots/nanox_deposit/00004.png)
-![step 5](./tests/snapshots/nanox_deposit/00005.png)
+## Tests
 
-#### Withdraw Execution and Consensus Layer Fees
+To test the plugin go to the tests folder from the "app-plugin-kiln/tests" and run the script "test"
+```shell
+cd app-plugin-kiln/tests        # go to the tests folder in app-plugin-kiln
+yarn                            # install dependencies
+yarn test                       # run the script test
+```
 
-![step 0](./tests/snapshots/nanox_withdraw/00000.png)
-![step 1](./tests/snapshots/nanox_withdraw/00001.png)
-![step 2](./tests/snapshots/nanox_withdraw/00002.png)
-![step 3](./tests/snapshots/nanox_withdraw/00003.png)
-![step 4](./tests/snapshots/nanox_withdraw/00004.png)
-![step 5](./tests/snapshots/nanox_withdraw/00005.png)
-![step 6](./tests/snapshots/nanox_withdraw/00006.png)
+## Continuous Integration
 
-#### Withdraw Execution Layer Fees
+The flow processed in [GitHub Actions](https://github.com/features/actions) is the following:
 
-![step 0](./tests/snapshots/nanox_withdrawEL/00000.png)
-![step 1](./tests/snapshots/nanox_withdrawEL/00001.png)
-![step 2](./tests/snapshots/nanox_withdrawEL/00002.png)
-![step 3](./tests/snapshots/nanox_withdrawEL/00003.png)
-![step 4](./tests/snapshots/nanox_withdrawEL/00004.png)
-![step 5](./tests/snapshots/nanox_withdrawEL/00005.png)
-![step 6](./tests/snapshots/nanox_withdrawEL/00006.png)
-
-#### Withdraw Consensus Layer Fees
-
-![step 0](./tests/snapshots/nanox_withdrawCL/00000.png)
-![step 1](./tests/snapshots/nanox_withdrawCL/00001.png)
-![step 2](./tests/snapshots/nanox_withdrawCL/00002.png)
-![step 3](./tests/snapshots/nanox_withdrawCL/00003.png)
-![step 4](./tests/snapshots/nanox_withdrawCL/00004.png)
-![step 5](./tests/snapshots/nanox_withdrawCL/00005.png)
-![step 6](./tests/snapshots/nanox_withdrawCL/00006.png)
+- Code formatting with [clang-format](http://clang.llvm.org/docs/ClangFormat.html)
+- Compilation of the application for Ledger Nano S in [ledger-app-builder](https://github.com/LedgerHQ/ledger-app-builder)
