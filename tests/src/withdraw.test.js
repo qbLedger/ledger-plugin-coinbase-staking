@@ -3,6 +3,7 @@ import "regenerator-runtime/runtime";
 import { waitForAppScreen, zemu, genericTx, nano_models,SPECULOS_ADDRESS, txFromEtherscan} from './test.fixture';
 import { ethers } from "ethers";
 import { parseEther, parseUnits} from "ethers/lib/utils";
+import { ledgerService } from '@ledgerhq/hw-app-eth';
 
 const contractAddr = "0xe8ff2a04837aac535199eecb5ece52b2735b3543";
 
@@ -26,7 +27,10 @@ nano_models.forEach(function(model) {
         unsignedTx.data = data;
 
         const serializedTx = ethers.utils.serializeTransaction(unsignedTx).slice(2);
-        const tx = eth.signTransaction("44'/60'/0'/0", serializedTx);
+        const resolution = await ledgerService.resolveTransaction(serializedTx, eth.loadConfig, {
+          externalPlugins: true,
+        })
+        const tx = eth.signTransaction("44'/60'/0'/0", serializedTx, resolution);
         const right_clicks = 5;
 
         await waitForAppScreen(sim);
