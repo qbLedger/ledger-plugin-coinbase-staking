@@ -13,4 +13,3 @@ const uint32_t KILN_SELECTORS[NUM_SELECTORS] = {KILN_DEPOSIT_SELECTOR,
                                                 KILN_WITHDRAW_SELECTOR,
                                                 KILN_WITHDRAW_EL_SELECTOR,
                                                 KILN_WITHDRAW_CL_SELECTOR};
-
