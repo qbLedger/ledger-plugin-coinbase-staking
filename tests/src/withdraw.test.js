@@ -31,7 +31,7 @@ nano_models.forEach(function(model) {
           externalPlugins: true,
         })
         const tx = eth.signTransaction("44'/60'/0'/0", serializedTx, resolution);
-        const right_clicks = 5;
+        const right_clicks = 4;
 
         await waitForAppScreen(sim);
 
