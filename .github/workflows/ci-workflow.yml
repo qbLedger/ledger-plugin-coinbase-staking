@@ -29,6 +29,8 @@ jobs:
     steps:
       - name: Clone
         uses: actions/checkout@v2
+      - name: Removing existing SDK
+        run: rm -rf ethereum-plugin-sdk
       - name: Clone SDK
         uses: actions/checkout@v2
         with:
