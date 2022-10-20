@@ -1,5 +1,4 @@
 #include "kiln_plugin.h"
-#include "bls.h"
 
 static void deposit_send_ui(ethQueryContractUI_t *msg) {
     strlcpy(msg->title, "Stake", msg->titleLength);
@@ -10,27 +9,10 @@ static void deposit_send_ui(ethQueryContractUI_t *msg) {
     amountToString(eth_amount, eth_amount_size, WEI_TO_ETHER, "ETH ", msg->msg, msg->msgLength);
 }
 
-static void deposit_withdrawal_ui(ethQueryContractUI_t *msg, context_t *context) {
-    strlcpy(msg->title, "Withdrawal", msg->titleLength);
-
-    uint64_t chainid = 0;
-
-    getEthDisplayableAddress(context->withdrawal_address,
-                             msg->msg,
-                             msg->msgLength,
-                             msg->pluginSharedRW->sha3,
-                             chainid);
-}
-
 static void deposit_ui(ethQueryContractUI_t *msg, context_t *context) {
     switch (msg->screenIndex) {
         case 0:
             deposit_send_ui(msg);
-            msg->result = ETH_PLUGIN_RESULT_OK;
-            break;
-
-        case 1:
-            deposit_withdrawal_ui(msg, context);
             msg->result = ETH_PLUGIN_RESULT_OK;
             break;
 
@@ -63,21 +45,10 @@ static void withdraw_rewards_ui(ethQueryContractUI_t *msg, context_t *context) {
     }
 }
 
-static void withdraw_validation_address_ui(ethQueryContractUI_t *msg, context_t *context) {
-    strlcpy(msg->title, "Validation Key", msg->titleLength);
-
-    displayEthBlsAddressStringFromBinary(msg, context->validator_address);
-}
-
 static void withdraw_ui(ethQueryContractUI_t *msg, context_t *context) {
     switch (msg->screenIndex) {
         case 0:
             withdraw_rewards_ui(msg, context);
-            msg->result = ETH_PLUGIN_RESULT_OK;
-            break;
-
-        case 1:
-            withdraw_validation_address_ui(msg, context);
             msg->result = ETH_PLUGIN_RESULT_OK;
             break;
 
