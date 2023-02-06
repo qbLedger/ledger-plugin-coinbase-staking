@@ -6,7 +6,7 @@ static void deposit_send_ui(ethQueryContractUI_t *msg) {
     const uint8_t *eth_amount = msg->pluginSharedRO->txContent->value.value;
     uint8_t eth_amount_size = msg->pluginSharedRO->txContent->value.length;
 
-    amountToString(eth_amount, eth_amount_size, WEI_TO_ETHER, "ETH ", msg->msg, msg->msgLength);
+    amountToString(eth_amount, eth_amount_size, WEI_TO_ETHER, "ETH", msg->msg, msg->msgLength);
 }
 
 static void deposit_ui(ethQueryContractUI_t *msg, context_t *context) {
