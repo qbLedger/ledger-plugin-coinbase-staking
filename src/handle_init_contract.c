@@ -50,8 +50,9 @@ void handle_init_contract(void *parameters) {
         case KILN_BATCH_WITHDRAW:
         case KILN_BATCH_WITHDRAW_EL:
         case KILN_BATCH_WITHDRAW_CL:
-            // TODO: dedicated param for batch functions
-            context->next_param = WITHDRAW_VALIDATION_OFFSET;
+            break;
+
+        case KILN_REQUEST_EXIT:
             break;
 
         default:
