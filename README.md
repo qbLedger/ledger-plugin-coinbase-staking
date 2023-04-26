@@ -25,6 +25,7 @@ Then in the same folder clone two more repositories, which is the plugin-tools a
 git clone https://github.com/LedgerHQ/plugin-tools.git                          #plugin-tools
 git clone --recurse-submodules https://github.com/LedgerHQ/app-ethereum.git     #app-ethereum
 ```
+
 ## Documentation
 
 Need more information about the interface, the architecture, or general stuff about ethereum plugins? You can find more about them in the [ethereum-app documentation](https://github.com/LedgerHQ/app-ethereum/blob/master/doc/ethapp_plugins.asc).
@@ -33,20 +34,22 @@ Need more information about the interface, the architecture, or general stuff ab
 
 Smart contracts covered by this plugin are:
 
-| Network | Version | Smart Contract |
-| ---       | --- | --- |
-| Goerli   | V0  | `0xe8Ff2a04837aac535199eEcB5ecE52b2735b3543`|
-
+| Network | Version | Smart Contract                               |
+| ------- | ------- | -------------------------------------------- |
+| Goerli  | V0      | `0xe8Ff2a04837aac535199eEcB5ecE52b2735b3543` |
 
 ## Build
 
 Go to the plugin-tools folder and run the "./start" script.
+
 ```shell
 cd plugin-tools  # go to plugin folder
 ./start.sh       # run the script start.sh
 ```
+
 The script will build a docker image and attach a console.
 When the docker image is running go to the "app-plugin-kiln" folder and build the ".elf" files.
+
 ```shell
 cd app-plugin-kiln/tests        # go to the tests folder in app-plugin-kiln
 ./build_local_test_elfs.sh      # run the script build_local_test_elfs.sh
@@ -55,6 +58,7 @@ cd app-plugin-kiln/tests        # go to the tests folder in app-plugin-kiln
 ## Tests
 
 To test the plugin go to the tests folder from the "app-plugin-kiln/tests" and run the script "test"
+
 ```shell
 cd app-plugin-kiln/tests        # go to the tests folder in app-plugin-kiln
 yarn                            # install dependencies
@@ -67,3 +71,73 @@ The flow processed in [GitHub Actions](https://github.com/features/actions) is t
 
 - Code formatting with [clang-format](http://clang.llvm.org/docs/ClangFormat.html)
 - Compilation of the application for Ledger Nano S in [ledger-app-builder](https://github.com/LedgerHQ/ledger-app-builder)
+
+# Flows
+
+## NANO S
+
+### Deposit
+
+![](/tests/snapshots/nanos_deposit/00000.png) ![](/tests/snapshots/nanos_deposit/00001.png) ![](/tests/snapshots/nanos_deposit/00002.png) ![](/tests/snapshots/nanos_deposit/00003.png) ![](/tests/snapshots/nanos_deposit/00004.png) ![](/tests/snapshots/nanos_deposit/00005.png)
+
+### Withdraw
+
+![](/tests/snapshots/nanos_withdraw/00000.png) ![](/tests/snapshots/nanos_withdraw/00001.png) ![](/tests/snapshots/nanos_withdraw/00002.png) ![](/tests/snapshots/nanos_withdraw/00003.png) ![](/tests/snapshots/nanos_withdraw/00004.png) ![](/tests/snapshots/nanos_withdraw/00005.png)
+
+### Withdraw EL
+
+![](/tests/snapshots/nanos_withdrawEL/00000.png) ![](/tests/snapshots/nanos_withdrawEL/00001.png) ![](/tests/snapshots/nanos_withdrawEL/00002.png) ![](/tests/snapshots/nanos_withdrawEL/00003.png) ![](/tests/snapshots/nanos_withdrawEL/00004.png) ![](/tests/snapshots/nanos_withdrawEL/00005.png)
+
+### Withdraw CL
+
+![](/tests/snapshots/nanos_withdrawCL/00000.png) ![](/tests/snapshots/nanos_withdrawCL/00001.png) ![](/tests/snapshots/nanos_withdrawCL/00002.png) ![](/tests/snapshots/nanos_withdrawCL/00003.png) ![](/tests/snapshots/nanos_withdrawCL/00004.png) ![](/tests/snapshots/nanos_withdrawCL/00005.png)
+
+### Batch Withdraw
+
+![](/tests/snapshots/nanos_batchWithdraw/00000.png) ![](/tests/snapshots/nanos_batchWithdraw/00001.png) ![](/tests/snapshots/nanos_batchWithdraw/00002.png) ![](/tests/snapshots/nanos_batchWithdraw/00003.png) ![](/tests/snapshots/nanos_batchWithdraw/00004.png) ![](/tests/snapshots/nanos_batchWithdraw/00005.png)
+
+### Batch Withdraw EL
+
+![](/tests/snapshots/nanos_batchWithdrawEL/00000.png) ![](/tests/snapshots/nanos_batchWithdrawEL/00001.png) ![](/tests/snapshots/nanos_batchWithdrawEL/00002.png) ![](/tests/snapshots/nanos_batchWithdrawEL/00003.png) ![](/tests/snapshots/nanos_batchWithdrawEL/00004.png) ![](/tests/snapshots/nanos_batchWithdrawEL/00005.png)
+
+### Batch WithdrawCL
+
+![](/tests/snapshots/nanos_batchWithdrawCL/00000.png) ![](/tests/snapshots/nanos_batchWithdrawCL/00001.png) ![](/tests/snapshots/nanos_batchWithdrawCL/00002.png) ![](/tests/snapshots/nanos_batchWithdrawCL/00003.png) ![](/tests/snapshots/nanos_batchWithdrawCL/00004.png) ![](/tests/snapshots/nanos_batchWithdrawCL/00005.png)
+
+## Request Exits
+
+![](/tests/snapshots/nanos_requestValidatorsExit/00000.png) ![](/tests/snapshots/nanos_requestValidatorsExit/00001.png) ![](/tests/snapshots/nanos_requestValidatorsExit/00002.png) ![](/tests/snapshots/nanos_requestValidatorsExit/00003.png) ![](/tests/snapshots/nanos_requestValidatorsExit/00004.png) ![](/tests/snapshots/nanos_requestValidatorsExit/00005.png)
+
+## NANO X
+
+### Deposit
+
+![](/tests/snapshots/nanox_deposit/00000.png) ![](/tests/snapshots/nanox_deposit/00001.png) ![](/tests/snapshots/nanox_deposit/00002.png) ![](/tests/snapshots/nanox_deposit/00003.png) ![](/tests/snapshots/nanox_deposit/00004.png) ![](/tests/snapshots/nanox_deposit/00005.png)
+
+### Withdraw
+
+![](/tests/snapshots/nanox_withdraw/00000.png) ![](/tests/snapshots/nanox_withdraw/00001.png) ![](/tests/snapshots/nanox_withdraw/00002.png) ![](/tests/snapshots/nanox_withdraw/00003.png) ![](/tests/snapshots/nanox_withdraw/00004.png) ![](/tests/snapshots/nanox_withdraw/00005.png)
+
+### Withdraw EL
+
+![](/tests/snapshots/nanox_withdrawEL/00000.png) ![](/tests/snapshots/nanox_withdrawEL/00001.png) ![](/tests/snapshots/nanox_withdrawEL/00002.png) ![](/tests/snapshots/nanox_withdrawEL/00003.png) ![](/tests/snapshots/nanox_withdrawEL/00004.png) ![](/tests/snapshots/nanox_withdrawEL/00005.png)
+
+### Withdraw CL
+
+![](/tests/snapshots/nanox_withdrawCL/00000.png) ![](/tests/snapshots/nanox_withdrawCL/00001.png) ![](/tests/snapshots/nanox_withdrawCL/00002.png) ![](/tests/snapshots/nanox_withdrawCL/00003.png) ![](/tests/snapshots/nanox_withdrawCL/00004.png) ![](/tests/snapshots/nanox_withdrawCL/00005.png)
+
+### Batch Withdraw
+
+![](/tests/snapshots/nanox_batchWithdraw/00000.png) ![](/tests/snapshots/nanox_batchWithdraw/00001.png) ![](/tests/snapshots/nanox_batchWithdraw/00002.png) ![](/tests/snapshots/nanox_batchWithdraw/00003.png) ![](/tests/snapshots/nanox_batchWithdraw/00004.png) ![](/tests/snapshots/nanox_batchWithdraw/00005.png)
+
+### Batch Withdraw EL
+
+![](/tests/snapshots/nanox_batchWithdrawEL/00000.png) ![](/tests/snapshots/nanox_batchWithdrawEL/00001.png) ![](/tests/snapshots/nanox_batchWithdrawEL/00002.png) ![](/tests/snapshots/nanox_batchWithdrawEL/00003.png) ![](/tests/snapshots/nanox_batchWithdrawEL/00004.png) ![](/tests/snapshots/nanox_batchWithdrawEL/00005.png)
+
+### Batch WithdrawCL
+
+![](/tests/snapshots/nanox_batchWithdrawCL/00000.png) ![](/tests/snapshots/nanox_batchWithdrawCL/00001.png) ![](/tests/snapshots/nanox_batchWithdrawCL/00002.png) ![](/tests/snapshots/nanox_batchWithdrawCL/00003.png) ![](/tests/snapshots/nanox_batchWithdrawCL/00004.png) ![](/tests/snapshots/nanox_batchWithdrawCL/00005.png)
+
+## Request Exits
+
+![](/tests/snapshots/nanox_requestValidatorsExit/00000.png) ![](/tests/snapshots/nanox_requestValidatorsExit/00001.png) ![](/tests/snapshots/nanox_requestValidatorsExit/00002.png) ![](/tests/snapshots/nanox_requestValidatorsExit/00003.png) ![](/tests/snapshots/nanox_requestValidatorsExit/00004.png) ![](/tests/snapshots/nanox_requestValidatorsExit/00005.png)
