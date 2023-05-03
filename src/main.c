@@ -24,17 +24,6 @@
 
 #include "kiln_plugin.h"
 
-// Selector is the MethodId on Ethercan
-static const uint32_t KILN_DEPOSIT_SELECTOR = 0xf340fa01;
-static const uint32_t KILN_WITHDRAW_SELECTOR = 0x0968f264;
-static const uint32_t KILN_WITHDRAW_EL_SELECTOR = 0xbf509bd4;
-static const uint32_t KILN_WITHDRAW_CL_SELECTOR = 0x2ba03a79;
-
-const uint32_t KILN_SELECTORS[NUM_SELECTORS] = {KILN_DEPOSIT_SELECTOR,
-                                                KILN_WITHDRAW_SELECTOR,
-                                                KILN_WITHDRAW_EL_SELECTOR,
-                                                KILN_WITHDRAW_CL_SELECTOR};
-
 // Function to dispatch calls from the ethereum app.
 void dispatch_plugin_calls(int message, void *parameters) {
     switch (message) {
@@ -47,9 +36,6 @@ void dispatch_plugin_calls(int message, void *parameters) {
         case ETH_PLUGIN_FINALIZE:
             handle_finalize(parameters);
             break;
-        case ETH_PLUGIN_PROVIDE_INFO:
-            handle_provide_token(parameters);
-            break;
         case ETH_PLUGIN_QUERY_CONTRACT_ID:
             handle_query_contract_id(parameters);
             break;
@@ -58,6 +44,16 @@ void dispatch_plugin_calls(int message, void *parameters) {
             break;
         default:
             PRINTF("Unhandled message %d\n", message);
+            break;
+    }
+}
+
+void handle_query_ui_exception(unsigned int *args) {
+    switch (args[0]) {
+        case ETH_PLUGIN_QUERY_CONTRACT_UI:
+            ((ethQueryContractUI_t *) args[1])->result = ETH_PLUGIN_RESULT_ERROR;
+            break;
+        default:
             break;
     }
 }
@@ -99,12 +95,23 @@ __attribute__((section(".boot"))) int main(int arg0) {
                 if (args[0] != ETH_PLUGIN_CHECK_PRESENCE) {
                     dispatch_plugin_calls(args[0], (void *) args[1]);
                 }
-
-                // Call `os_lib_end`, go back to the ethereum app.
-                os_lib_end();
             }
         }
+        CATCH_OTHER(e) {
+            switch (e) {
+                // These exceptions are only generated on handle_query_contract_ui()
+                case 0x6502:
+                case EXCEPTION_OVERFLOW:
+                    handle_query_ui_exception((unsigned int *) arg0);
+                    break;
+                default:
+                    break;
+            }
+            PRINTF("Exception 0x%x caught\n", e);
+        }
         FINALLY {
+            // Call `os_lib_end`, go back to the ethereum app.
+            os_lib_end();
         }
     }
     END_TRY;

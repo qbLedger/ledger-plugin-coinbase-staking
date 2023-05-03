@@ -10,13 +10,17 @@
 
 // Available selectors:
 //
-// 0. deposit(withdrawal_address)
+// 0. deposit()
 // 1. withdraw(validator_pubkey)
 // 2. withdrawEL(validator_pubkey)
-// 2. withdrawCL(validator_pubkey)
+// 3. withdrawCL(validator_pubkey)
+// 4. batchWithdraw(validator_pubkeys)
+// 5. batchWithdrawEL(validator_pubkeys)
+// 6. batchWithdrawCL(validator_pubkeys)
+// 7. requestValidatorsExit(validator_pubkeys)
 //
-// More to come!
-#define NUM_SELECTORS 4
+//
+#define NUM_SELECTORS 8
 
 // Selectors available (see mapping above).
 typedef enum {
@@ -24,11 +28,14 @@ typedef enum {
     KILN_WITHDRAW,
     KILN_WITHDRAW_EL,
     KILN_WITHDRAW_CL,
+    KILN_BATCH_WITHDRAW,
+    KILN_BATCH_WITHDRAW_EL,
+    KILN_BATCH_WITHDRAW_CL,
+    KILN_REQUEST_EXIT,
 } selector_t;
 
 // Parameters for deposit selector.
 typedef enum {
-    DEPOSIT_WITHDRAWAL_ADDRESS = 0,
     DEPOSIT_UNEXPECTED_PARAMETER,
 } deposit_parameters;
 
@@ -44,7 +51,6 @@ typedef enum {
 extern const uint32_t KILN_SELECTORS[NUM_SELECTORS];
 
 typedef struct context_t {
-    uint8_t withdrawal_address[ADDRESS_LENGTH];
     uint8_t validator_address[VALIDATOR_KEY_SIZE];
 
     uint8_t next_param;
@@ -58,5 +64,4 @@ void handle_provide_parameter(void *parameters);
 void handle_query_contract_ui(void *parameters);
 void handle_init_contract(void *parameters);
 void handle_finalize(void *parameters);
-void handle_provide_token(void *parameters);
 void handle_query_contract_id(void *parameters);
