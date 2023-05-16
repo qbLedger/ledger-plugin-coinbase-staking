@@ -27,15 +27,15 @@ static void withdraw_rewards_ui(ethQueryContractUI_t *msg, context_t *context) {
     strlcpy(msg->title, "Rewards", msg->titleLength);
 
     switch (context->selectorIndex) {
-        case KILN_WITHDRAW:
+        case KILN_V1_WITHDRAW:
             strlcpy(msg->msg, "Consensus & Exec", msg->msgLength);
             break;
 
-        case KILN_WITHDRAW_EL:
+        case KILN_V1_WITHDRAW_EL:
             strlcpy(msg->msg, "Execution Layer", msg->msgLength);
             break;
 
-        case KILN_WITHDRAW_CL:
+        case KILN_V1_WITHDRAW_CL:
             strlcpy(msg->msg, "Consensus Layer", msg->msgLength);
             break;
 
@@ -63,15 +63,15 @@ static void batch_withdraw_rewards_ui(ethQueryContractUI_t *msg, context_t *cont
     strlcpy(msg->title, "Rewards", msg->titleLength);
 
     switch (context->selectorIndex) {
-        case KILN_BATCH_WITHDRAW:
+        case KILN_V1_BATCH_WITHDRAW:
             strlcpy(msg->msg, "Consensus & Exec", msg->msgLength);
             break;
 
-        case KILN_BATCH_WITHDRAW_EL:
+        case KILN_V1_BATCH_WITHDRAW_EL:
             strlcpy(msg->msg, "Execution Layer", msg->msgLength);
             break;
 
-        case KILN_BATCH_WITHDRAW_CL:
+        case KILN_V1_BATCH_WITHDRAW_CL:
             strlcpy(msg->msg, "Consensus Layer", msg->msgLength);
             break;
 
@@ -122,23 +122,23 @@ void handle_query_contract_ui(void *parameters) {
     memset(msg->msg, 0, msg->msgLength);
 
     switch (context->selectorIndex) {
-        case KILN_DEPOSIT:
+        case KILN_V1_DEPOSIT:
             deposit_ui(msg, context);
             break;
 
-        case KILN_WITHDRAW:
-        case KILN_WITHDRAW_EL:
-        case KILN_WITHDRAW_CL:
+        case KILN_V1_WITHDRAW:
+        case KILN_V1_WITHDRAW_EL:
+        case KILN_V1_WITHDRAW_CL:
             withdraw_ui(msg, context);
             break;
 
-        case KILN_BATCH_WITHDRAW:
-        case KILN_BATCH_WITHDRAW_EL:
-        case KILN_BATCH_WITHDRAW_CL:
+        case KILN_V1_BATCH_WITHDRAW:
+        case KILN_V1_BATCH_WITHDRAW_EL:
+        case KILN_V1_BATCH_WITHDRAW_CL:
             batch_withdraw_ui(msg, context);
             break;
 
-        case KILN_REQUEST_EXIT:
+        case KILN_V1_REQUEST_EXIT:
             request_exit_ui(msg, context);
             break;
 

@@ -9,23 +9,23 @@ void handle_query_contract_id(void *parameters) {
     msg->result = ETH_PLUGIN_RESULT_OK;
 
     switch (context->selectorIndex) {
-        case KILN_DEPOSIT:
+        case KILN_V1_DEPOSIT:
             strlcpy(msg->version, "Stake", msg->versionLength);
             break;
 
-        case KILN_WITHDRAW:
-        case KILN_WITHDRAW_EL:
-        case KILN_WITHDRAW_CL:
+        case KILN_V1_WITHDRAW:
+        case KILN_V1_WITHDRAW_EL:
+        case KILN_V1_WITHDRAW_CL:
             strlcpy(msg->version, "Withdraw", msg->versionLength);
             break;
 
-        case KILN_BATCH_WITHDRAW:
-        case KILN_BATCH_WITHDRAW_EL:
-        case KILN_BATCH_WITHDRAW_CL:
+        case KILN_V1_BATCH_WITHDRAW:
+        case KILN_V1_BATCH_WITHDRAW_EL:
+        case KILN_V1_BATCH_WITHDRAW_CL:
             strlcpy(msg->version, "Batch Withdraw", msg->versionLength);
             break;
 
-        case KILN_REQUEST_EXIT:
+        case KILN_V1_REQUEST_EXIT:
             strlcpy(msg->version, "Request Exit", msg->versionLength);
             break;
 

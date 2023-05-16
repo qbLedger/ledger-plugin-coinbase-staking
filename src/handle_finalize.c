@@ -7,14 +7,14 @@ void handle_finalize(void *parameters) {
     msg->uiType = ETH_UI_TYPE_GENERIC;
 
     switch (context->selectorIndex) {
-        case KILN_DEPOSIT:
-        case KILN_WITHDRAW:
-        case KILN_WITHDRAW_EL:
-        case KILN_WITHDRAW_CL:
-        case KILN_BATCH_WITHDRAW:
-        case KILN_BATCH_WITHDRAW_EL:
-        case KILN_BATCH_WITHDRAW_CL:
-        case KILN_REQUEST_EXIT:
+        case KILN_V1_DEPOSIT:
+        case KILN_V1_WITHDRAW:
+        case KILN_V1_WITHDRAW_EL:
+        case KILN_V1_WITHDRAW_CL:
+        case KILN_V1_BATCH_WITHDRAW:
+        case KILN_V1_BATCH_WITHDRAW_EL:
+        case KILN_V1_BATCH_WITHDRAW_CL:
+        case KILN_V1_REQUEST_EXIT:
             msg->numScreens = 1;
             msg->result = ETH_PLUGIN_RESULT_OK;
             break;

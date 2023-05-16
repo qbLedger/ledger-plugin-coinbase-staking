@@ -52,24 +52,24 @@ void handle_provide_parameter(void *parameters) {
            msg->parameter);
 
     switch (context->selectorIndex) {
-        case KILN_DEPOSIT:
+        case KILN_V1_DEPOSIT:
             msg->result = ETH_PLUGIN_RESULT_OK;
             handle_deposit_parameters(msg, context);
             break;
 
-        case KILN_WITHDRAW:
-        case KILN_WITHDRAW_EL:
-        case KILN_WITHDRAW_CL:
+        case KILN_V1_WITHDRAW:
+        case KILN_V1_WITHDRAW_EL:
+        case KILN_V1_WITHDRAW_CL:
             msg->result = ETH_PLUGIN_RESULT_OK;
             handle_withdraw_parameters(msg, context);
             break;
-        case KILN_BATCH_WITHDRAW:
-        case KILN_BATCH_WITHDRAW_EL:
-        case KILN_BATCH_WITHDRAW_CL:
+        case KILN_V1_BATCH_WITHDRAW:
+        case KILN_V1_BATCH_WITHDRAW_EL:
+        case KILN_V1_BATCH_WITHDRAW_CL:
             msg->result = ETH_PLUGIN_RESULT_OK;
             break;
 
-        case KILN_REQUEST_EXIT:
+        case KILN_V1_REQUEST_EXIT:
             msg->result = ETH_PLUGIN_RESULT_OK;
             break;
 
