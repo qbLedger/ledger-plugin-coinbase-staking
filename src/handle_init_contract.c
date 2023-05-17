@@ -55,6 +55,12 @@ void handle_init_contract(void *parameters) {
         case KILN_V1_REQUEST_EXIT:
             break;
 
+        case KILN_V2_STAKE:
+        case KILN_V2_REQUEST_EXIT:
+        case KILN_V2_MULTICLAIM:
+        case KILN_V2_CLAIM:
+            break;
+
         default:
             PRINTF("Missing selectorIndex: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;

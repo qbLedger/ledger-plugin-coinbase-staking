@@ -23,13 +23,12 @@ static const uint32_t KILN_V1_REQUEST_EXIT_SELECTOR = 0xb6b06dec;
 static const uint32_t KILN_V2_STAKE_SELECTOR = 0x3a4b66f1;
 // --- cast keccak "requestExit(uint256)"
 static const uint32_t KILN_V2_REQUEST_EXIT_SELECTOR = 0x721c6513;
-// --- cast keccak "multiClaim(address[], uint32[][], uint32[][])(int64[][])"
+// --- cast keccak "multiClaim(address[],uint32[][],uint32[][])"
 static const uint32_t KILN_V2_MULTICLAIM_SELECTOR = 0xa6d95360;
-// --- cast keccak "claim(uint32[] calldata ticketIds, uint32[] calldata caskIds, uint16
-// maxClaimDepth)(uint8[])"
+// --- cast keccak "claim(uint32[],uint32[],uint16)"
 static const uint32_t KILN_V2_CLAIM_SELECTOR = 0x10dd50a7;
 
-const uint32_t KILN_V1_SELECTORS[NUM_SELECTORS] = {
+const uint32_t KILN_SELECTORS[NUM_SELECTORS] = {
     // V1
     KILN_V1_DEPOSIT_SELECTOR,
     KILN_V1_WITHDRAW_SELECTOR,

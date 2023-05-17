@@ -15,6 +15,10 @@ void handle_finalize(void *parameters) {
         case KILN_V1_BATCH_WITHDRAW_EL:
         case KILN_V1_BATCH_WITHDRAW_CL:
         case KILN_V1_REQUEST_EXIT:
+        case KILN_V2_STAKE:
+        case KILN_V2_REQUEST_EXIT:
+        case KILN_V2_MULTICLAIM:
+        case KILN_V2_CLAIM:
             msg->numScreens = 1;
             msg->result = ETH_PLUGIN_RESULT_OK;
             break;

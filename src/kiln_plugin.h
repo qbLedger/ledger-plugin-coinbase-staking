@@ -20,8 +20,12 @@
 // --- 6. batchWithdrawCL(validator_pubkeys)
 // --- 7. requestValidatorsExit(validator_pubkeys)
 //
-//
-#define NUM_SELECTORS 8
+// V2 selectors
+// --- 8. stake()
+// --- 9. requestExit(shares_count)
+// --- 10. multiClaim(exit_queues, ticket_ids, cask_ids)
+// --- 11. claim()
+#define NUM_SELECTORS 12
 
 // Selectors available (see mapping above).
 typedef enum {
@@ -33,6 +37,10 @@ typedef enum {
     KILN_V1_BATCH_WITHDRAW_EL,
     KILN_V1_BATCH_WITHDRAW_CL,
     KILN_V1_REQUEST_EXIT,
+    KILN_V2_STAKE,
+    KILN_V2_REQUEST_EXIT,
+    KILN_V2_MULTICLAIM,
+    KILN_V2_CLAIM,
 } selector_t;
 
 // Parameters for deposit selector.
