@@ -7,68 +7,70 @@
             "selectors": {
                 "0xd0e30db0": {
                     "method": "deposit",
-                    "plugin": "Kiln"
+                    "plugin": "kiln"
                 },
                 "0xe99454f5": {
                     "method": "setWithdrawal",
-                    "plugin": "Kiln"
+                    "plugin": "kiln"
                 },
                 "0x0968f264": {
                     "method": "withdraw",
-                    "plugin": "Kiln"
+                    "plugin": "kiln"
                 },
                 "0x2ba03a79": {
                     "method": "withdrawCLFee",
-                    "plugin": "Kiln"
+                    "plugin": "kiln"
                 },
                 "0xbf509bd4": {
                     "method": "withdrawELFee",
-                    "plugin": "Kiln"
+                    "plugin": "kiln"
                 },
                 "0xe8a0c121": {
                     "method": "batchWithdraw",
-                    "plugin": "Kiln"
+                    "plugin": "kiln"
                 },
                 "0xef5e4682": {
                     "method": "batchWithdrawELFee",
-                    "plugin": "Kiln"
+                    "plugin": "kiln"
                 },
                 "0x0ffab6c2": {
                     "method": "batchWithdrawCLFee",
-                    "plugin": "Kiln"
+                    "plugin": "kiln"
                 },
                 "0xb6b06dec": {
                     "method": "requestValidatorsExit",
-                    "plugin": "Kiln"
+                    "plugin": "kiln"
                 }
             }
         },
         {
-            "address": "0xe8ff2a04837aac535199eecb5ece52b2735b3543",
+            "address": "0x380c7e0ec45f5b62ae5a0a6d6a0b95b532e3dd9c",
             "contractName": "LedgerLiveV2",
             "selectors": {
                 "0x3a4b66f1": {
                     "method": "stake",
-                    "plugin": "Kiln"
+                    "plugin": "kiln"
                 },
                 "0x721c6513": {
                     "method": "requestExit",
-                    "plugin": "Kiln"
+                    "plugin": "kiln"
                 },
                 "0xa6d95360": {
                     "method": "multiClaim",
-                    "plugin": "Kiln"
+                    "plugin": "kiln"
                 }
             }
         },
         {
             "address": "0xb0c8078af582d8b754ef35f3bdaceff8587bd914",
             "contractName": "KilnExitQueueV2",
-            "0x10dd50a7": {
-                "method": "claim",
-                "plugin": "Kiln"
+            "selectors": {
+                "0x10dd50a7": {
+                    "method": "claim",
+                    "plugin": "kiln"
+                }
             }
         }
     ],
-    "name": "Kiln"
+    "name": "kiln"
 }
