@@ -10,7 +10,7 @@ void handle_query_contract_id(void *parameters) {
 
     switch (context->selectorIndex) {
         case KILN_V1_DEPOSIT:
-            strlcpy(msg->version, "Stake", msg->versionLength);
+            strlcpy(msg->version, "Solo Staking", msg->versionLength);
             break;
 
         case KILN_V1_WITHDRAW:
@@ -30,7 +30,7 @@ void handle_query_contract_id(void *parameters) {
             break;
 
         case KILN_V2_STAKE:
-            strlcpy(msg->version, "Stake", msg->versionLength);
+            strlcpy(msg->version, "Pooled Staking", msg->versionLength);
             break;
 
         case KILN_V2_REQUEST_EXIT:
