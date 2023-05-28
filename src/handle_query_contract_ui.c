@@ -115,23 +115,72 @@ static void request_exit_ui(ethQueryContractUI_t *msg, context_t *context) {
 }
 
 static void stake_ui_v2(ethQueryContractUI_t *msg, context_t *context) {
-    strlcpy(msg->title, "Stake", msg->titleLength);
-    strlcpy(msg->msg, "Pooled Staking", msg->msgLength);
+    switch (msg->screenIndex) {
+        case 0:
+            strlcpy(msg->title, "Stake", msg->titleLength);
+            const uint8_t *eth_amount = msg->pluginSharedRO->txContent->value.value;
+            uint8_t eth_amount_size = msg->pluginSharedRO->txContent->value.length;
+
+            amountToString(eth_amount,
+                           eth_amount_size,
+                           WEI_TO_ETHER,
+                           "ETH",
+                           msg->msg,
+                           msg->msgLength);
+
+            msg->result = ETH_PLUGIN_RESULT_OK;
+            break;
+
+        default:
+            PRINTF("Received an invalid screenIndex\n");
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            break;
+    }
 }
 
 static void request_exit_ui_v2(ethQueryContractUI_t *msg, context_t *context) {
-    strlcpy(msg->title, "Request", msg->titleLength);
-    strlcpy(msg->msg, "Position Exit", msg->msgLength);
+    switch (msg->screenIndex) {
+        case 0:
+            strlcpy(msg->title, "Request", msg->titleLength);
+            strlcpy(msg->msg, "Position Exit", msg->msgLength);
+            msg->result = ETH_PLUGIN_RESULT_OK;
+            break;
+
+        default:
+            PRINTF("Received an invalid screenIndex\n");
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            break;
+    }
 }
 
 static void multiclaim_ui_v2(ethQueryContractUI_t *msg, context_t *context) {
-    strlcpy(msg->title, "Withdraw", msg->titleLength);
-    strlcpy(msg->msg, "Exited Positions", msg->msgLength);
+    switch (msg->screenIndex) {
+        case 0:
+            strlcpy(msg->title, "Withdraw", msg->titleLength);
+            strlcpy(msg->msg, "Exited Positions", msg->msgLength);
+            msg->result = ETH_PLUGIN_RESULT_OK;
+            break;
+
+        default:
+            PRINTF("Received an invalid screenIndex\n");
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            break;
+    }
 }
 
 static void claim_ui_v2(ethQueryContractUI_t *msg, context_t *context) {
-    strlcpy(msg->title, "Withdraw", msg->titleLength);
-    strlcpy(msg->msg, "Exited Position", msg->msgLength);
+    switch (msg->screenIndex) {
+        case 0:
+            strlcpy(msg->title, "Withdraw", msg->titleLength);
+            strlcpy(msg->msg, "Exited Position", msg->msgLength);
+            msg->result = ETH_PLUGIN_RESULT_OK;
+            break;
+
+        default:
+            PRINTF("Received an invalid screenIndex\n");
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            break;
+    }
 }
 
 void handle_query_contract_ui(void *parameters) {
