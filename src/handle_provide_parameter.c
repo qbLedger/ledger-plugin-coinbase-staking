@@ -1,14 +1,5 @@
 #include "kiln_plugin.h"
 
-static void handle_deposit_parameters(ethPluginProvideParameter_t *msg, context_t *context) {
-    switch (context->next_param) {
-        default:
-            PRINTF("Param not supported: %d\n", context->next_param);
-            msg->result = ETH_PLUGIN_RESULT_ERROR;
-            break;
-    }
-}
-
 static void handle_withdraw_parameters(ethPluginProvideParameter_t *msg, context_t *context) {
     // We don't use the offset here as we know the layout:
     //
@@ -53,8 +44,7 @@ void handle_provide_parameter(void *parameters) {
 
     switch (context->selectorIndex) {
         case KILN_V1_DEPOSIT:
-            msg->result = ETH_PLUGIN_RESULT_OK;
-            handle_deposit_parameters(msg, context);
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
             break;
 
         case KILN_V1_WITHDRAW:

@@ -38,7 +38,6 @@ void handle_init_contract(void *parameters) {
 
     switch (context->selectorIndex) {
         case KILN_V1_DEPOSIT:
-            context->next_param = DEPOSIT_UNEXPECTED_PARAMETER;
             break;
 
         case KILN_V1_WITHDRAW:
