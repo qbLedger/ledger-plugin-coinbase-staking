@@ -1,14 +1,5 @@
 #include "kiln_plugin.h"
 
-static void deposit_send_ui(ethQueryContractUI_t *msg) {
-    strlcpy(msg->title, "Stake", msg->titleLength);
-
-    const uint8_t *eth_amount = msg->pluginSharedRO->txContent->value.value;
-    uint8_t eth_amount_size = msg->pluginSharedRO->txContent->value.length;
-
-    amountToString(eth_amount, eth_amount_size, WEI_TO_ETHER, "ETH", msg->msg, msg->msgLength);
-}
-
 static void deposit_ui(ethQueryContractUI_t *msg, context_t *context) {
     switch (msg->screenIndex) {
         case 0:
@@ -114,7 +105,7 @@ static void request_exit_ui(ethQueryContractUI_t *msg, context_t *context) {
     }
 }
 
-static void stake_ui_v2(ethQueryContractUI_t *msg, context_t *context) {
+static void stake_ui(ethQueryContractUI_t *msg, context_t *context) {
     switch (msg->screenIndex) {
         case 0:
             strlcpy(msg->title, "Stake", msg->titleLength);
@@ -192,7 +183,7 @@ void handle_query_contract_ui(void *parameters) {
 
     switch (context->selectorIndex) {
         case KILN_V1_DEPOSIT:
-            deposit_ui(msg, context);
+            stake_ui(msg, context);
             break;
 
         case KILN_V1_WITHDRAW:
@@ -212,7 +203,7 @@ void handle_query_contract_ui(void *parameters) {
             break;
 
         case KILN_V2_STAKE:
-            stake_ui_v2(msg, context);
+            stake_ui(msg, context);
             break;
 
         case KILN_V2_REQUEST_EXIT:

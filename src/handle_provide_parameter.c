@@ -64,6 +64,8 @@ void handle_provide_parameter(void *parameters) {
             break;
 
         case KILN_V2_STAKE:
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            break;
         case KILN_V2_REQUEST_EXIT:
         case KILN_V2_MULTICLAIM:
         case KILN_V2_CLAIM:
