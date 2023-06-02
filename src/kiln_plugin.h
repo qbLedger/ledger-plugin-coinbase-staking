@@ -60,8 +60,6 @@ typedef enum {
 extern const uint32_t KILN_SELECTORS[NUM_SELECTORS];
 
 typedef struct context_t {
-    uint8_t validator_address[VALIDATOR_KEY_SIZE];
-
     uint8_t next_param;
 
     selector_t selectorIndex;
