@@ -77,7 +77,7 @@ static void request_exits_ui(ethQueryContractUI_t *msg) {
     strlcpy(msg->msg, "Validators Exit", msg->msgLength);
 }
 
-static void request_exit_ui(ethQueryContractUI_t *msg, context_t *context) {
+static void request_exit_ui(ethQueryContractUI_t *msg) {
     switch (msg->screenIndex) {
         case 0:
             request_exits_ui(msg);
@@ -91,7 +91,7 @@ static void request_exit_ui(ethQueryContractUI_t *msg, context_t *context) {
     }
 }
 
-static void stake_ui(ethQueryContractUI_t *msg, context_t *context) {
+static void stake_ui(ethQueryContractUI_t *msg) {
     switch (msg->screenIndex) {
         case 0:
             strlcpy(msg->title, "Stake", msg->titleLength);
@@ -115,7 +115,7 @@ static void stake_ui(ethQueryContractUI_t *msg, context_t *context) {
     }
 }
 
-static void request_exit_ui_v2(ethQueryContractUI_t *msg, context_t *context) {
+static void request_exit_ui_v2(ethQueryContractUI_t *msg) {
     switch (msg->screenIndex) {
         case 0:
             strlcpy(msg->title, "Request", msg->titleLength);
@@ -130,7 +130,7 @@ static void request_exit_ui_v2(ethQueryContractUI_t *msg, context_t *context) {
     }
 }
 
-static void multiclaim_ui_v2(ethQueryContractUI_t *msg, context_t *context) {
+static void multiclaim_ui_v2(ethQueryContractUI_t *msg) {
     switch (msg->screenIndex) {
         case 0:
             strlcpy(msg->title, "Withdraw", msg->titleLength);
@@ -145,7 +145,7 @@ static void multiclaim_ui_v2(ethQueryContractUI_t *msg, context_t *context) {
     }
 }
 
-static void claim_ui_v2(ethQueryContractUI_t *msg, context_t *context) {
+static void claim_ui_v2(ethQueryContractUI_t *msg) {
     switch (msg->screenIndex) {
         case 0:
             strlcpy(msg->title, "Withdraw", msg->titleLength);
@@ -169,7 +169,7 @@ void handle_query_contract_ui(void *parameters) {
 
     switch (context->selectorIndex) {
         case KILN_V1_DEPOSIT:
-            stake_ui(msg, context);
+            stake_ui(msg);
             break;
 
         case KILN_V1_WITHDRAW:
@@ -185,23 +185,23 @@ void handle_query_contract_ui(void *parameters) {
             break;
 
         case KILN_V1_REQUEST_EXIT:
-            request_exit_ui(msg, context);
+            request_exit_ui(msg);
             break;
 
         case KILN_V2_STAKE:
-            stake_ui(msg, context);
+            stake_ui(msg);
             break;
 
         case KILN_V2_REQUEST_EXIT:
-            request_exit_ui_v2(msg, context);
+            request_exit_ui_v2(msg);
             break;
 
         case KILN_V2_MULTICLAIM:
-            multiclaim_ui_v2(msg, context);
+            multiclaim_ui_v2(msg);
             break;
 
         case KILN_V2_CLAIM:
-            claim_ui_v2(msg, context);
+            claim_ui_v2(msg);
             break;
 
         default:
