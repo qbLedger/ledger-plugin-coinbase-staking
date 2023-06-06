@@ -1,19 +1,5 @@
 #include "kiln_plugin.h"
 
-static void deposit_ui(ethQueryContractUI_t *msg, context_t *context) {
-    switch (msg->screenIndex) {
-        case 0:
-            deposit_send_ui(msg);
-            msg->result = ETH_PLUGIN_RESULT_OK;
-            break;
-
-        default:
-            PRINTF("Received an invalid screenIndex\n");
-            msg->result = ETH_PLUGIN_RESULT_ERROR;
-            break;
-    }
-}
-
 static void withdraw_rewards_ui(ethQueryContractUI_t *msg, context_t *context) {
     strlcpy(msg->title, "Rewards", msg->titleLength);
 
