@@ -65,7 +65,7 @@
             "address": "0xb0c8078af582d8b754ef35f3bdaceff8587bd914",
             "contractName": "KilnExitQueueV2",
             "selectors": {
-                "0x10dd50a7": {
+                "0xadcf1163": {
                     "method": "claim",
                     "plugin": "kiln"
                 }

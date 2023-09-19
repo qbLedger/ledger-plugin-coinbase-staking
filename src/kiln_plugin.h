@@ -24,7 +24,7 @@
 // --- 8. stake()
 // --- 9. requestExit(shares_count)
 // --- 10. multiClaim(exit_queues, ticket_ids, cask_ids)
-// --- 11. claim()
+// --- 11. claim(uint256[],uint32[],uint16)
 #define NUM_SELECTORS 12
 
 // Selectors available (see mapping above).
