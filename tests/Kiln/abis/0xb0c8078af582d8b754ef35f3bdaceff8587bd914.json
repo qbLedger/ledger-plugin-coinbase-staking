@@ -4,7 +4,7 @@
             {
                 "internalType": "uint256[]",
                 "name": "ticketIds",
-                "type": "uint32[]"
+                "type": "uint256[]"
             },
             {
                 "internalType": "uint32[]",
