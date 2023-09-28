@@ -7,7 +7,7 @@ import { ledgerService } from '@ledgerhq/hw-app-eth';
 
 const contractAddr = '0xb0c8078af582d8b754ef35f3bdaceff8587bd914';
 
-const pluginName = 'kiln';
+const pluginName = 'Kiln';
 const abi_path = `../${pluginName}/abis/` + contractAddr + '.json';
 const abi = require(abi_path);
 

@@ -55,7 +55,7 @@ function zemu(device, func) {
         let elf_path;
         let lib_elf;
         elf_path = device.eth_path;
-        lib_elf = { 'kiln': device.path };
+        lib_elf = { 'Kiln': device.path };
 
         const sim = new Zemu(elf_path, lib_elf);
         try {
