@@ -70,24 +70,6 @@ function zemu(device, func) {
     const sim = new Zemu(elf_path, lib_elf);
     try {
       await sim.start({ ...sim_options_nano, model: device.name });
-      if (device.name == 'stax') {
-        const settingNav = new TouchNavigation([
-          ButtonKind.InfoButton,
-          ButtonKind.NavRightButton,
-          ButtonKind.ToggleSettingButton1,
-        ]);
-        await sim.navigate(
-          '.',
-          `${dev.prefix.toLowerCase()}-setting`,
-          settingNav.schedule,
-          true,
-          false
-        );
-      } else {
-        await sim.clickRight();
-        await sim.clickBoth(undefined, false);
-        await sim.clickBoth(undefined, false);
-      }
       const transport = await sim.getTransport();
       const eth = new Eth(transport);
       eth.setLoadConfig({
