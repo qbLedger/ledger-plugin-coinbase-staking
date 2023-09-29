@@ -15,14 +15,14 @@ jobs:
     strategy:
       matrix:
         include:
-          - sdk: "$NANOS_SDK"
-            name: "nanos"
-          - sdk: "$NANOX_SDK"
-            name: "nanox"
-          - sdk: "$NANOSP_SDK"
-            name: "nanosp"
-          - sdk: "$STAX_SDK"
-            name: "stax"
+          - sdk: '$NANOS_SDK'
+            name: 'nanos'
+          - sdk: '$NANOX_SDK'
+            name: 'nanox'
+          - sdk: '$NANOSP_SDK'
+            name: 'nanosp'
+          - sdk: '$STAX_SDK'
+            name: 'stax'
 
     runs-on: ubuntu-latest
     container:
@@ -64,12 +64,12 @@ jobs:
     strategy:
       matrix:
         include:
-          - sdk: "$NANOS_SDK"
-            name: "nanos"
-          - sdk: "$NANOX_SDK"
-            name: "nanox"
-          - sdk: "$NANOSP_SDK"
-            name: "nanosp"
+          - sdk: '$NANOS_SDK'
+            name: 'nanos'
+          - sdk: '$NANOX_SDK'
+            name: 'nanox'
+          - sdk: '$NANOSP_SDK'
+            name: 'nanosp'
 
     runs-on: ubuntu-latest
     container:
@@ -100,12 +100,12 @@ jobs:
     strategy:
       matrix:
         include:
-          - sdk: "$NANOS_SDK"
-            name: "nanos"
-          - sdk: "$NANOX_SDK"
-            name: "nanox"
-          - sdk: "$NANOSP_SDK"
-            name: "nanosp"
+          - sdk: '$NANOS_SDK'
+            name: 'nanos'
+          - sdk: '$NANOX_SDK'
+            name: 'nanox'
+          - sdk: '$NANOSP_SDK'
+            name: 'nanosp'
 
     runs-on: ubuntu-latest
     container:
@@ -149,7 +149,7 @@ jobs:
       - name: Install node
         uses: actions/setup-node@v3
         with:
-          node-version: "16.19.0"
+          node-version: '16.19.0'
 
       - name: Install yarn
         run: |
@@ -162,3 +162,10 @@ jobs:
       - name: Run Zemu tests
         run: |
           cd tests && docker pull zondax/builder-zemu:latest && yarn test
+
+      - name: Upload snapshots
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.name }}-zemu-snapshots
+          path: tests/snapshots-tmp/
