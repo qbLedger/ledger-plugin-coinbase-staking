@@ -136,6 +136,15 @@ jobs:
     name: E2E Tests
     needs: [job_build_debug_plugin, job_build_debug_app]
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - sdk: '$NANOS_SDK'
+            name: 'nanos'
+          - sdk: '$NANOX_SDK'
+            name: 'nanox'
+          - sdk: '$NANOSP_SDK'
+            name: 'nanosp'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
