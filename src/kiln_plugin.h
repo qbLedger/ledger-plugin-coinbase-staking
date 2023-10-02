@@ -10,28 +10,37 @@
 
 // Available selectors:
 //
-// 0. deposit()
-// 1. withdraw(validator_pubkey)
-// 2. withdrawEL(validator_pubkey)
-// 3. withdrawCL(validator_pubkey)
-// 4. batchWithdraw(validator_pubkeys)
-// 5. batchWithdrawEL(validator_pubkeys)
-// 6. batchWithdrawCL(validator_pubkeys)
-// 7. requestValidatorsExit(validator_pubkeys)
+// V1 selectors
+// --- 0. deposit()
+// --- 1. withdraw(validator_pubkey)
+// --- 2. withdrawEL(validator_pubkey)
+// --- 3. withdrawCL(validator_pubkey)
+// --- 4. batchWithdraw(validator_pubkeys)
+// --- 5. batchWithdrawEL(validator_pubkeys)
+// --- 6. batchWithdrawCL(validator_pubkeys)
+// --- 7. requestValidatorsExit(validator_pubkeys)
 //
-//
-#define NUM_SELECTORS 8
+// V2 selectors
+// --- 8. stake()
+// --- 9. requestExit(shares_count)
+// --- 10. multiClaim(exit_queues, ticket_ids, cask_ids)
+// --- 11. claim(uint256[],uint32[],uint16)
+#define NUM_SELECTORS 12
 
 // Selectors available (see mapping above).
 typedef enum {
-    KILN_DEPOSIT = 0,
-    KILN_WITHDRAW,
-    KILN_WITHDRAW_EL,
-    KILN_WITHDRAW_CL,
-    KILN_BATCH_WITHDRAW,
-    KILN_BATCH_WITHDRAW_EL,
-    KILN_BATCH_WITHDRAW_CL,
-    KILN_REQUEST_EXIT,
+    KILN_V1_DEPOSIT = 0,
+    KILN_V1_WITHDRAW,
+    KILN_V1_WITHDRAW_EL,
+    KILN_V1_WITHDRAW_CL,
+    KILN_V1_BATCH_WITHDRAW,
+    KILN_V1_BATCH_WITHDRAW_EL,
+    KILN_V1_BATCH_WITHDRAW_CL,
+    KILN_V1_REQUEST_EXIT,
+    KILN_V2_STAKE,
+    KILN_V2_REQUEST_EXIT,
+    KILN_V2_MULTICLAIM,
+    KILN_V2_CLAIM,
 } selector_t;
 
 // Parameters for deposit selector.
@@ -51,8 +60,6 @@ typedef enum {
 extern const uint32_t KILN_SELECTORS[NUM_SELECTORS];
 
 typedef struct context_t {
-    uint8_t validator_address[VALIDATOR_KEY_SIZE];
-
     uint8_t next_param;
 
     selector_t selectorIndex;

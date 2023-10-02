@@ -1,41 +1,18 @@
 #include "kiln_plugin.h"
 
-static void deposit_send_ui(ethQueryContractUI_t *msg) {
-    strlcpy(msg->title, "Stake", msg->titleLength);
-
-    const uint8_t *eth_amount = msg->pluginSharedRO->txContent->value.value;
-    uint8_t eth_amount_size = msg->pluginSharedRO->txContent->value.length;
-
-    amountToString(eth_amount, eth_amount_size, WEI_TO_ETHER, "ETH", msg->msg, msg->msgLength);
-}
-
-static void deposit_ui(ethQueryContractUI_t *msg, context_t *context) {
-    switch (msg->screenIndex) {
-        case 0:
-            deposit_send_ui(msg);
-            msg->result = ETH_PLUGIN_RESULT_OK;
-            break;
-
-        default:
-            PRINTF("Received an invalid screenIndex\n");
-            msg->result = ETH_PLUGIN_RESULT_ERROR;
-            break;
-    }
-}
-
 static void withdraw_rewards_ui(ethQueryContractUI_t *msg, context_t *context) {
     strlcpy(msg->title, "Rewards", msg->titleLength);
 
     switch (context->selectorIndex) {
-        case KILN_WITHDRAW:
+        case KILN_V1_WITHDRAW:
             strlcpy(msg->msg, "Consensus & Exec", msg->msgLength);
             break;
 
-        case KILN_WITHDRAW_EL:
+        case KILN_V1_WITHDRAW_EL:
             strlcpy(msg->msg, "Execution Layer", msg->msgLength);
             break;
 
-        case KILN_WITHDRAW_CL:
+        case KILN_V1_WITHDRAW_CL:
             strlcpy(msg->msg, "Consensus Layer", msg->msgLength);
             break;
 
@@ -63,15 +40,15 @@ static void batch_withdraw_rewards_ui(ethQueryContractUI_t *msg, context_t *cont
     strlcpy(msg->title, "Rewards", msg->titleLength);
 
     switch (context->selectorIndex) {
-        case KILN_BATCH_WITHDRAW:
+        case KILN_V1_BATCH_WITHDRAW:
             strlcpy(msg->msg, "Consensus & Exec", msg->msgLength);
             break;
 
-        case KILN_BATCH_WITHDRAW_EL:
+        case KILN_V1_BATCH_WITHDRAW_EL:
             strlcpy(msg->msg, "Execution Layer", msg->msgLength);
             break;
 
-        case KILN_BATCH_WITHDRAW_CL:
+        case KILN_V1_BATCH_WITHDRAW_CL:
             strlcpy(msg->msg, "Consensus Layer", msg->msgLength);
             break;
 
@@ -100,10 +77,79 @@ static void request_exits_ui(ethQueryContractUI_t *msg) {
     strlcpy(msg->msg, "Validators Exit", msg->msgLength);
 }
 
-static void request_exit_ui(ethQueryContractUI_t *msg, context_t *context) {
+static void request_exit_ui(ethQueryContractUI_t *msg) {
     switch (msg->screenIndex) {
         case 0:
             request_exits_ui(msg);
+            msg->result = ETH_PLUGIN_RESULT_OK;
+            break;
+
+        default:
+            PRINTF("Received an invalid screenIndex\n");
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            break;
+    }
+}
+
+static void stake_ui(ethQueryContractUI_t *msg) {
+    switch (msg->screenIndex) {
+        case 0:
+            strlcpy(msg->title, "Stake", msg->titleLength);
+            const uint8_t *eth_amount = msg->pluginSharedRO->txContent->value.value;
+            uint8_t eth_amount_size = msg->pluginSharedRO->txContent->value.length;
+
+            amountToString(eth_amount,
+                           eth_amount_size,
+                           WEI_TO_ETHER,
+                           "ETH",
+                           msg->msg,
+                           msg->msgLength);
+
+            msg->result = ETH_PLUGIN_RESULT_OK;
+            break;
+
+        default:
+            PRINTF("Received an invalid screenIndex\n");
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            break;
+    }
+}
+
+static void request_exit_ui_v2(ethQueryContractUI_t *msg) {
+    switch (msg->screenIndex) {
+        case 0:
+            strlcpy(msg->title, "Request", msg->titleLength);
+            strlcpy(msg->msg, "Position Exit", msg->msgLength);
+            msg->result = ETH_PLUGIN_RESULT_OK;
+            break;
+
+        default:
+            PRINTF("Received an invalid screenIndex\n");
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            break;
+    }
+}
+
+static void multiclaim_ui_v2(ethQueryContractUI_t *msg) {
+    switch (msg->screenIndex) {
+        case 0:
+            strlcpy(msg->title, "Withdraw", msg->titleLength);
+            strlcpy(msg->msg, "Exited Positions", msg->msgLength);
+            msg->result = ETH_PLUGIN_RESULT_OK;
+            break;
+
+        default:
+            PRINTF("Received an invalid screenIndex\n");
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            break;
+    }
+}
+
+static void claim_ui_v2(ethQueryContractUI_t *msg) {
+    switch (msg->screenIndex) {
+        case 0:
+            strlcpy(msg->title, "Withdraw", msg->titleLength);
+            strlcpy(msg->msg, "Exited Position", msg->msgLength);
             msg->result = ETH_PLUGIN_RESULT_OK;
             break;
 
@@ -122,24 +168,40 @@ void handle_query_contract_ui(void *parameters) {
     memset(msg->msg, 0, msg->msgLength);
 
     switch (context->selectorIndex) {
-        case KILN_DEPOSIT:
-            deposit_ui(msg, context);
+        case KILN_V1_DEPOSIT:
+            stake_ui(msg);
             break;
 
-        case KILN_WITHDRAW:
-        case KILN_WITHDRAW_EL:
-        case KILN_WITHDRAW_CL:
+        case KILN_V1_WITHDRAW:
+        case KILN_V1_WITHDRAW_EL:
+        case KILN_V1_WITHDRAW_CL:
             withdraw_ui(msg, context);
             break;
 
-        case KILN_BATCH_WITHDRAW:
-        case KILN_BATCH_WITHDRAW_EL:
-        case KILN_BATCH_WITHDRAW_CL:
+        case KILN_V1_BATCH_WITHDRAW:
+        case KILN_V1_BATCH_WITHDRAW_EL:
+        case KILN_V1_BATCH_WITHDRAW_CL:
             batch_withdraw_ui(msg, context);
             break;
 
-        case KILN_REQUEST_EXIT:
-            request_exit_ui(msg, context);
+        case KILN_V1_REQUEST_EXIT:
+            request_exit_ui(msg);
+            break;
+
+        case KILN_V2_STAKE:
+            stake_ui(msg);
+            break;
+
+        case KILN_V2_REQUEST_EXIT:
+            request_exit_ui_v2(msg);
+            break;
+
+        case KILN_V2_MULTICLAIM:
+            multiclaim_ui_v2(msg);
+            break;
+
+        case KILN_V2_CLAIM:
+            claim_ui_v2(msg);
             break;
 
         default:

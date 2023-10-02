@@ -15,12 +15,14 @@ jobs:
     strategy:
       matrix:
         include:
-          - sdk: "$NANOS_SDK"
-            name: "nanos"
-          - sdk: "$NANOX_SDK"
-            name: "nanox"
-          - sdk: "$NANOSP_SDK"
-            name: "nanosp"
+          - sdk: '$NANOS_SDK'
+            name: 'nanos'
+          - sdk: '$NANOX_SDK'
+            name: 'nanox'
+          - sdk: '$NANOSP_SDK'
+            name: 'nanosp'
+          - sdk: '$STAX_SDK'
+            name: 'stax'
 
     runs-on: ubuntu-latest
     container:
@@ -62,12 +64,12 @@ jobs:
     strategy:
       matrix:
         include:
-          - sdk: "$NANOS_SDK"
-            name: "nanos"
-          - sdk: "$NANOX_SDK"
-            name: "nanox"
-          - sdk: "$NANOSP_SDK"
-            name: "nanosp"
+          - sdk: '$NANOS_SDK'
+            name: 'nanos'
+          - sdk: '$NANOX_SDK'
+            name: 'nanox'
+          - sdk: '$NANOSP_SDK'
+            name: 'nanosp'
 
     runs-on: ubuntu-latest
     container:
@@ -98,12 +100,12 @@ jobs:
     strategy:
       matrix:
         include:
-          - sdk: "$NANOS_SDK"
-            name: "nanos"
-          - sdk: "$NANOX_SDK"
-            name: "nanox"
-          - sdk: "$NANOSP_SDK"
-            name: "nanosp"
+          - sdk: '$NANOS_SDK'
+            name: 'nanos'
+          - sdk: '$NANOX_SDK'
+            name: 'nanox'
+          - sdk: '$NANOSP_SDK'
+            name: 'nanosp'
 
     runs-on: ubuntu-latest
     container:
@@ -134,6 +136,13 @@ jobs:
     name: E2E Tests
     needs: [job_build_debug_plugin, job_build_debug_app]
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - sdk: '$NANOS_SDK'
+            name: 'nanos'
+          - sdk: '$NANOX_SDK'
+            name: 'nanox'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -147,7 +156,7 @@ jobs:
       - name: Install node
         uses: actions/setup-node@v3
         with:
-          node-version: "16.19.0"
+          node-version: '16.19.0'
 
       - name: Install yarn
         run: |
@@ -159,4 +168,11 @@ jobs:
 
       - name: Run Zemu tests
         run: |
-          cd tests && docker pull zondax/builder-zemu@sha256:8d7b06cedf2d018b9464f4af4b7a8357c3fbb180f3ab153f8cb8f138defb22a4 && yarn test
+          cd tests && docker pull zondax/builder-zemu:latest && yarn test
+
+      - name: Upload snapshots
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.name }}-zemu-snapshots
+          path: tests/snapshots-tmp/
