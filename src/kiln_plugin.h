@@ -25,7 +25,15 @@
 // --- 9. requestExit(shares_count)
 // --- 10. multiClaim(exit_queues, ticket_ids, cask_ids)
 // --- 11. claim(uint256[],uint32[],uint16)
-#define NUM_SELECTORS 12
+//
+// LR selectors
+// --- 12. approve(address,uint256)
+// --- 13. depositIntoStrategy(address,address,uint256)
+// --- 14. queueWithdrawal(uint256[],address[],uint256[],address,bool)
+// --- 15. queueWithdrawals((address[],uint256[],address)[])
+// --- 16. completeQueuedWithdrawal((address,address,address,uint256,uint32,address[],uint256[]),address[],uint256,bool)
+// --- 17. completeQueuedWithdrawals((address,address,address,uint256,uint32,address[],uint256[])[],address[][],uint256[],bool[])
+#define NUM_SELECTORS 18
 
 // Selectors available (see mapping above).
 typedef enum {

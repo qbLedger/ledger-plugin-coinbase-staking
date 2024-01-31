@@ -44,6 +44,30 @@ void handle_query_contract_id(ethQueryContractID_t *msg) {
             strlcpy(msg->version, "Claim", msg->versionLength);
             break;
 
+        case KILN_LR_ERC20_APPROVE:
+            strlcpy(msg->version, "ERC20 Approve", msg->versionLength);
+            break;
+        
+        case KILN_LR_DEPOSIT_INTO_STRATEGY:
+            strlcpy(msg->version, "Deposit In Strategy", msg->versionLength);
+            break;
+        
+        case KILN_LR_QUEUE_WITHDRAWAL:
+            strlcpy(msg->version, "Queue Withdrawal", msg->versionLength);
+            break;
+
+        case KILN_LR_QUEUE_WITHDRAWALS:
+            strlcpy(msg->version, "Queue Withdrawals", msg->versionLength);
+            break;
+
+        case KILN_LR_COMPLETE_QUEUED_WITHDRAWAL:
+            strlcpy(msg->version, "Complete Queued Withdrawal", msg->versionLength);
+            break;
+
+        case KILN_LR_COMPLETE_QUEUED_WITHDRAWALS:
+            strlcpy(msg->version, "Complete Queued Withdrawals", msg->versionLength);
+            break;
+
         default:
             PRINTF("Selector Index not supported: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;

@@ -173,6 +173,23 @@ static bool claim_ui_v2(ethQueryContractUI_t *msg) {
     return ret;
 }
 
+static bool erc20_approve_lr(ethQueryContractUI_t *msg) {
+    bool ret = false;
+
+    switch (msg->screenIndex) {
+        case 0:
+            strlcpy(msg->title, "Approve", msg->titleLength);
+            strlcpy(msg->msg, "LR Token", msg->msgLength);
+            ret = true;
+            break;
+
+        default:
+            PRINTF("Received an invalid screenIndex\n");
+            break;
+    }
+    return ret;
+}
+
 void handle_query_contract_ui(ethQueryContractUI_t *msg) {
     context_t *context = (context_t *) msg->pluginContext;
     bool ret = false;
@@ -215,6 +232,10 @@ void handle_query_contract_ui(ethQueryContractUI_t *msg) {
 
         case KILN_V2_CLAIM:
             ret = claim_ui_v2(msg);
+            break;
+
+        case KILN_LR_ERC20_APPROVE:
+            ret = erc20_approve_lr(msg);
             break;
 
         default:

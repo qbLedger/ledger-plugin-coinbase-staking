@@ -37,6 +37,15 @@ void handle_provide_parameter(ethPluginProvideParameter_t *msg) {
             msg->result = ETH_PLUGIN_RESULT_OK;
             break;
 
+        case KILN_LR_ERC20_APPROVE:
+        case KILN_LR_DEPOSIT_INTO_STRATEGY:
+        case KILN_LR_QUEUE_WITHDRAWAL:
+        case KILN_LR_QUEUE_WITHDRAWALS:
+        case KILN_LR_COMPLETE_QUEUED_WITHDRAWAL:
+        case KILN_LR_COMPLETE_QUEUED_WITHDRAWALS:
+            msg->result = ETH_PLUGIN_RESULT_OK;
+            break;
+
         default:
             PRINTF("Selector Index not supported: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;

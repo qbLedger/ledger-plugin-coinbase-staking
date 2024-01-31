@@ -18,6 +18,12 @@ void handle_finalize(ethPluginFinalize_t *msg) {
         case KILN_V2_REQUEST_EXIT:
         case KILN_V2_MULTICLAIM:
         case KILN_V2_CLAIM:
+        case KILN_LR_ERC20_APPROVE:
+        case KILN_LR_DEPOSIT_INTO_STRATEGY:
+        case KILN_LR_QUEUE_WITHDRAWAL:
+        case KILN_LR_QUEUE_WITHDRAWALS:
+        case KILN_LR_COMPLETE_QUEUED_WITHDRAWAL:
+        case KILN_LR_COMPLETE_QUEUED_WITHDRAWALS:
             msg->numScreens = 1;
             msg->result = ETH_PLUGIN_RESULT_OK;
             break;
