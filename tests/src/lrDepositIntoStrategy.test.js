@@ -29,7 +29,7 @@ nano_models.forEach(function (model) {
       const { data } = await contract.populateTransaction.depositIntoStrategy(
         '0x9d7eD45EE2E8FC5482fa2428f15C971e6369011d', // ETHx strat
         '0xA35b1B31Ce002FBF2058D22F30f95D405200A15b', // ETHx erc20
-        42
+        '420000000000000'
       );
 
       let unsignedTx = genericTx;

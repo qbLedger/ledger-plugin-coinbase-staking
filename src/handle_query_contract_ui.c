@@ -190,7 +190,7 @@ static bool deposit_into_stragey_ui_lr(ethQueryContractUI_t *msg, context_t *con
             strlcpy(msg->title, "Amount", msg->titleLength);
             amountToString(context->lr_erc20_amount_to_display[0],
                            sizeof(context->lr_erc20_amount_to_display[0]),
-                           2,
+                           ERC20_DECIMALS,
                            context->lr_erc20_to_display[0] == -1
                                ? "UNKNOWN"
                                : lr_tickers[context->lr_erc20_to_display[0]],

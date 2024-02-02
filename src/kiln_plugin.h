@@ -58,6 +58,9 @@ extern const uint32_t KILN_SELECTORS[NUM_SELECTORS];
 // ADDRESS_STR_LEN is 0x + addr + \0
 #define ADDRESS_STR_LEN 43
 
+// All supported ERC20 tokens have 18 decimals on mainnet.
+#define ERC20_DECIMALS 18
+
 // Parameters for deposit selector.
 typedef enum {
     DEPOSIT_UNEXPECTED_PARAMETER,
