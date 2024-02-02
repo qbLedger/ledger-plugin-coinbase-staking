@@ -22,7 +22,7 @@ const right_clicks = 5;
 
 nano_models.forEach(function (model) {
   test(
-    '[Nano ' + model.letter + '] Deposit Into Strategy Normal',
+    '[Nano ' + model.letter + '] LR Deposit Into Strategy Normal',
     zemu(model, async (sim, eth) => {
       const contract = new ethers.Contract(contractAddr, abi);
 

@@ -21,7 +21,7 @@ const abi = require(abi_path);
 
 nano_models.forEach(function (model) {
   test(
-    '[Nano ' + model.letter + '] Stake Eth',
+    '[Nano ' + model.letter + '] LR Complete Queued Withdrawal',
     zemu(model, async (sim, eth) => {
       const contract = new ethers.Contract(contractAddr, abi);
 
