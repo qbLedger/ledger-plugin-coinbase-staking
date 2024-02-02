@@ -211,7 +211,7 @@ static bool queue_withdrawal_ui_lr(ethQueryContractUI_t *msg) {
 
     switch (msg->screenIndex) {
         case 0:
-            strlcpy(msg->title, "Liquid Restaking", msg->titleLength);
+            strlcpy(msg->title, "EigenLayer", msg->titleLength);
             strlcpy(msg->msg, "Queue Withdrawal", msg->msgLength);
             ret = true;
             break;
@@ -229,7 +229,7 @@ static bool complete_queued_withdrawal_ui_lr(ethQueryContractUI_t *msg) {
 
     switch (msg->screenIndex) {
         case 0:
-            strlcpy(msg->title, "Liquid Restaking", msg->titleLength);
+            strlcpy(msg->title, "EigenLayer", msg->titleLength);
             strlcpy(msg->msg, "Complete Withdrawal", msg->msgLength);
             ret = true;
             break;
