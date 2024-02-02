@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string.h>
+#include <ctype.h> 
 
 #include "eth_internals.h"
 #include "eth_plugin_interface.h"
@@ -32,8 +33,7 @@
 // --- 14. queueWithdrawal(uint256[],address[],uint256[],address,bool)
 // --- 15. queueWithdrawals((address[],uint256[],address)[])
 // --- 16. completeQueuedWithdrawal((address,address,address,uint256,uint32,address[],uint256[]),address[],uint256,bool)
-// --- 17. completeQueuedWithdrawals((address,address,address,uint256,uint32,address[],uint256[])[],address[][],uint256[],bool[])
-#define NUM_SELECTORS 18
+#define NUM_SELECTORS 17
 
 // Selectors available (see mapping above).
 typedef enum {
@@ -49,26 +49,55 @@ typedef enum {
     KILN_V2_REQUEST_EXIT,
     KILN_V2_MULTICLAIM,
     KILN_V2_CLAIM,
+    KILN_LR_ERC20_APPROVE,
+    KILN_LR_DEPOSIT_INTO_STRATEGY,
+    KILN_LR_QUEUE_WITHDRAWAL,
+    KILN_LR_QUEUE_WITHDRAWALS,
+    KILN_LR_COMPLETE_QUEUED_WITHDRAWAL,
 } selector_t;
+
+extern const uint32_t KILN_SELECTORS[NUM_SELECTORS];
+
+// ADDRESS_STR_LEN is 0x + addr + \0
+#define ADDRESS_STR_LEN 43
 
 // Parameters for deposit selector.
 typedef enum {
     DEPOSIT_UNEXPECTED_PARAMETER,
 } deposit_parameters;
 
-// Parameters for withdraw selectors (applies to withdraw, withdrawEL, withdrawCL)
+// Parameters for LR approve selector.
 typedef enum {
-    WITHDRAW_VALIDATION_OFFSET = 0,
-    WITHDRAW_VALIDATION_LENGTH = 1,
-    WITHDRAW_VALIDATION_KEY_PART_1 = 2,  // BLS keys are 48 bytes, thus they are
-    WITHDRAW_VALIDATION_KEY_PART_2 = 3,  // taking 2x32 bytes parameters.
-    WITHDRAW_UNEXPECTED_PARAMETER,
-} withdraw_parameters;
+    LR_ERC20_APPROVE_SPENDER = 0,
+    LR_ERC20_APPROVE_AMOUNT,
+    LR_ERC20_APPROVE_UNEXPECTED_PARAMETER,
+} lr_approve_parameters;
 
-extern const uint32_t KILN_SELECTORS[NUM_SELECTORS];
+// Parameters for LR deposit into strategy selector.
+typedef enum {
+    LR_DEPOSIT_INTO_STRATEGY_STRATEGY = 0,
+    LR_DEPOSIT_INTO_STRATEGY_TOKEN,
+    LR_DEPOSIT_INTO_STRATEGY_AMOUNT,
+    LR_DEPOSIT_INTO_STRATEGY_UNEXPECTED_PARAMETER,
+} lr_deposit_into_strategy_parameters;
+
+#define LR_STRATEGIES_COUNT 11
+
+extern const char lr_strategy_addresses[LR_STRATEGIES_COUNT][ADDRESS_STR_LEN];
+extern const char lr_erc20_addresses[LR_STRATEGIES_COUNT][ADDRESS_STR_LEN];
+extern const char lr_tickers[LR_STRATEGIES_COUNT][MAX_TICKER_LEN];
 
 typedef struct context_t {
     uint8_t next_param;
+
+    // parameters for LR functions
+    char lr_strategy_address[ADDRESS_STR_LEN];
+    char lr_strategy_name[MAX_TICKER_LEN];
+
+    char lr_erc20_address[ADDRESS_STR_LEN];
+    char lr_erc20_name[MAX_TICKER_LEN];
+    uint8_t lr_erc20_amount[INT256_LENGTH];
+
 
     selector_t selectorIndex;
 } context_t;

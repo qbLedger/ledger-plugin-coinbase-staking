@@ -173,16 +173,25 @@ static bool claim_ui_v2(ethQueryContractUI_t *msg) {
     return ret;
 }
 
-static bool erc20_approve_lr(ethQueryContractUI_t *msg) {
+static bool deposit_into_stragey_ui_lr(ethQueryContractUI_t *msg, context_t *context) {
     bool ret = false;
 
     switch (msg->screenIndex) {
         case 0:
-            strlcpy(msg->title, "Approve", msg->titleLength);
-            strlcpy(msg->msg, "LR Token", msg->msgLength);
+            strlcpy(msg->title, "Strategy", msg->titleLength);
+            strlcpy(msg->msg, context->lr_strategy_name, MAX_TICKER_LEN);
             ret = true;
             break;
-
+        case 1:
+            strlcpy(msg->title, "Amount", msg->titleLength);
+            amountToString(context->lr_erc20_amount,
+                          sizeof(context->lr_erc20_amount),
+                          2,
+                          context->lr_erc20_name,
+                          msg->msg,
+                          msg->msgLength);
+            ret = true;
+            break;
         default:
             PRINTF("Received an invalid screenIndex\n");
             break;
@@ -234,8 +243,8 @@ void handle_query_contract_ui(ethQueryContractUI_t *msg) {
             ret = claim_ui_v2(msg);
             break;
 
-        case KILN_LR_ERC20_APPROVE:
-            ret = erc20_approve_lr(msg);
+        case KILN_LR_DEPOSIT_INTO_STRATEGY:
+            ret = deposit_into_stragey_ui_lr(msg, context);
             break;
 
         default:
