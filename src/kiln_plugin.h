@@ -28,12 +28,11 @@
 // --- 11. claim(uint256[],uint32[],uint16)
 //
 // LR selectors
-// --- 12. approve(address,uint256)
-// --- 13. depositIntoStrategy(address,address,uint256)
-// --- 14. queueWithdrawal(uint256[],address[],uint256[],address,bool)
-// --- 15. queueWithdrawals((address[],uint256[],address)[])
-// --- 16. completeQueuedWithdrawal((address,address,address,uint256,uint32,address[],uint256[]),address[],uint256,bool)
-#define NUM_SELECTORS 17
+// --- 12. depositIntoStrategy(address,address,uint256)
+// --- 13. queueWithdrawal(uint256[],address[],uint256[],address,bool)
+// --- 14. queueWithdrawals((address[],uint256[],address)[])
+// --- 15. completeQueuedWithdrawal((address,address,address,uint256,uint32,address[],uint256[]),address[],uint256,bool)
+#define NUM_SELECTORS 16
 
 // Selectors available (see mapping above).
 typedef enum {
@@ -49,7 +48,6 @@ typedef enum {
     KILN_V2_REQUEST_EXIT,
     KILN_V2_MULTICLAIM,
     KILN_V2_CLAIM,
-    KILN_LR_ERC20_APPROVE,
     KILN_LR_DEPOSIT_INTO_STRATEGY,
     KILN_LR_QUEUE_WITHDRAWAL,
     KILN_LR_QUEUE_WITHDRAWALS,
@@ -66,13 +64,6 @@ typedef enum {
     DEPOSIT_UNEXPECTED_PARAMETER,
 } deposit_parameters;
 
-// Parameters for LR approve selector.
-typedef enum {
-    LR_ERC20_APPROVE_SPENDER = 0,
-    LR_ERC20_APPROVE_AMOUNT,
-    LR_ERC20_APPROVE_UNEXPECTED_PARAMETER,
-} lr_approve_parameters;
-
 // Parameters for LR deposit into strategy selector.
 typedef enum {
     LR_DEPOSIT_INTO_STRATEGY_STRATEGY = 0,
@@ -80,6 +71,16 @@ typedef enum {
     LR_DEPOSIT_INTO_STRATEGY_AMOUNT,
     LR_DEPOSIT_INTO_STRATEGY_UNEXPECTED_PARAMETER,
 } lr_deposit_into_strategy_parameters;
+
+// Parameters for LR queue withdrawal selector.
+typedef enum {
+    LR_QUEUE_WITHDRAWAL_STRATEGY_INDEXES_OFFSET = 0,
+    LR_QUEUE_WITHDRAWAL_STRATEGIES_OFFSET,
+    LR_QUEUE_WITHDRAWAL_SHARES_OFFSET,
+    LR_QUEUE_WITHDRAWAL_WITHDRAWER,
+    LR_QUEUE_WITHDRAWAL_UNDELEGATEIFPOSSIBLE,
+    LR_QUEUE_WITHDRAWAL_UNEXPECTED_PARAMETER
+} lr_queue_withdrawal_parameters;
 
 #define LR_STRATEGIES_COUNT 11
 

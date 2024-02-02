@@ -57,14 +57,12 @@ void handle_init_contract(ethPluginInitContract_t *msg) {
         case KILN_V2_CLAIM:
             break;
 
-        case KILN_LR_ERC20_APPROVE:
-            context->next_param = LR_ERC20_APPROVE_SPENDER;
-            break;
         case KILN_LR_DEPOSIT_INTO_STRATEGY:
             context->lr_display_buffer_size = 1;
             context->next_param = LR_DEPOSIT_INTO_STRATEGY_STRATEGY;
             break;
         case KILN_LR_QUEUE_WITHDRAWAL:
+            context->next_param = LR_QUEUE_WITHDRAWAL_STRATEGY_INDEXES_OFFSET;
             break;
         case KILN_LR_QUEUE_WITHDRAWALS:
             break;

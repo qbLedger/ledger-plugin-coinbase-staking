@@ -129,6 +129,30 @@ void handle_lr_deposit_into_strategy(ethPluginProvideParameter_t *msg, context_t
     }
 }
 
+void handle_lr_queue_withdrawal(ethPluginProvideParameter_t *msg, context_t *context) {
+    switch (context->next_param) {
+        case LR_QUEUE_WITHDRAWAL_STRATEGY_INDEXES_OFFSET:
+            context->next_param = LR_QUEUE_WITHDRAWAL_STRATEGIES_OFFSET;
+            break;
+        case LR_QUEUE_WITHDRAWAL_STRATEGIES_OFFSET:
+            context->next_param = LR_QUEUE_WITHDRAWAL_SHARES_OFFSET;
+            break;
+        case LR_QUEUE_WITHDRAWAL_SHARES_OFFSET:
+            context->next_param = LR_QUEUE_WITHDRAWAL_WITHDRAWER;
+            break;
+        case LR_QUEUE_WITHDRAWAL_WITHDRAWER:
+            context->next_param = LR_QUEUE_WITHDRAWAL_UNDELEGATEIFPOSSIBLE;
+            break;
+        case LR_QUEUE_WITHDRAWAL_UNDELEGATEIFPOSSIBLE:
+            context->next_param = LR_QUEUE_WITHDRAWAL_UNEXPECTED_PARAMETER;
+            break;
+        default:
+            PRINTF("Param not supported: %d\n", context->next_param);
+            //msg->result = ETH_PLUGIN_RESULT_ERROR;
+            break;
+    }
+}
+
 void handle_provide_parameter(ethPluginProvideParameter_t *msg) {
     context_t *context = (context_t *) msg->pluginContext;
 
@@ -170,6 +194,8 @@ void handle_provide_parameter(ethPluginProvideParameter_t *msg) {
             handle_lr_deposit_into_strategy(msg, context);
             break;
         case KILN_LR_QUEUE_WITHDRAWAL:
+            handle_lr_queue_withdrawal(msg, context);
+            break;
         case KILN_LR_QUEUE_WITHDRAWALS:
         case KILN_LR_COMPLETE_QUEUED_WITHDRAWAL:
             msg->result = ETH_PLUGIN_RESULT_OK;

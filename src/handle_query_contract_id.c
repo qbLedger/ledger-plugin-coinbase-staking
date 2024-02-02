@@ -44,10 +44,6 @@ void handle_query_contract_id(ethQueryContractID_t *msg) {
             strlcpy(msg->version, "Claim", msg->versionLength);
             break;
 
-        case KILN_LR_ERC20_APPROVE:
-            strlcpy(msg->version, "ERC20 Approve", msg->versionLength);
-            break;
-        
         case KILN_LR_DEPOSIT_INTO_STRATEGY:
             strlcpy(msg->version, "Deposit In Strategy", msg->versionLength);
             break;

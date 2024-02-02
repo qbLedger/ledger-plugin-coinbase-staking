@@ -204,6 +204,24 @@ static bool deposit_into_stragey_ui_lr(ethQueryContractUI_t *msg, context_t *con
     return ret;
 }
 
+bool queue_withdrawal_ui_lr(ethQueryContractUI_t *msg, context_t *context) {
+    // TODO: display strategies
+    bool ret = false;
+
+    switch (msg->screenIndex) {
+        case 0:
+            strlcpy(msg->title, "Liquid Restaking", msg->titleLength);
+            strlcpy(msg->msg, "Queue Withdrawal", msg->msgLength);
+            ret = true;
+            break;
+
+        default:
+            PRINTF("Received an invalid screenIndex\n");
+            break;
+    }
+    return ret;
+}
+
 void handle_query_contract_ui(ethQueryContractUI_t *msg) {
     context_t *context = (context_t *) msg->pluginContext;
     bool ret = false;
@@ -251,6 +269,10 @@ void handle_query_contract_ui(ethQueryContractUI_t *msg) {
         case KILN_LR_DEPOSIT_INTO_STRATEGY:
             ret = deposit_into_stragey_ui_lr(msg, context);
             break;
+
+        case KILN_LR_QUEUE_WITHDRAWAL:
+            ret = queue_withdrawal_ui_lr(msg, context);
+            break;  
 
         default:
             PRINTF("Selector Index not supported: %d\n", context->selectorIndex);
