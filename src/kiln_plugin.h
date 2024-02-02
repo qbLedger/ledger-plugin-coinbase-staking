@@ -30,9 +30,8 @@
 // LR selectors
 // --- 12. depositIntoStrategy(address,address,uint256)
 // --- 13. queueWithdrawal(uint256[],address[],uint256[],address,bool)
-// --- 14. queueWithdrawals((address[],uint256[],address)[])
-// --- 15. completeQueuedWithdrawal((address,address,address,uint256,uint32,address[],uint256[]),address[],uint256,bool)
-#define NUM_SELECTORS 16
+// --- 14. completeQueuedWithdrawal((address,address,address,uint256,uint32,address[],uint256[]),address[],uint256,bool)
+#define NUM_SELECTORS 15
 
 // Selectors available (see mapping above).
 typedef enum {
@@ -50,7 +49,6 @@ typedef enum {
     KILN_V2_CLAIM,
     KILN_LR_DEPOSIT_INTO_STRATEGY,
     KILN_LR_QUEUE_WITHDRAWAL,
-    KILN_LR_QUEUE_WITHDRAWALS,
     KILN_LR_COMPLETE_QUEUED_WITHDRAWAL,
 } selector_t;
 
@@ -81,6 +79,15 @@ typedef enum {
     LR_QUEUE_WITHDRAWAL_UNDELEGATEIFPOSSIBLE,
     LR_QUEUE_WITHDRAWAL_UNEXPECTED_PARAMETER
 } lr_queue_withdrawal_parameters;
+
+// Parameters for LR complete queued withdrawal selector.
+typedef enum {
+    LR_COMPLETE_QUEUED_WITHDRAWAL_QUEUEDWITHDRAWAL_OFFSET = 0,
+    LR_COMPLETE_QUEUED_WITHDRAWAL_TOKENS_OFFSET,
+    LR_COMPLETE_QUEUED_WITHDRAWAL_MIDDLEWARETIMEINDEX,
+    LR_COMPLETE_QUEUED_WITHDRAWAL_RECEIVEASTOKENS,
+    LR_COMPLETE_QUEUED_WITHDRAWAL_UNEXPECTED_PARAMETER
+} lr_complete_queued_withdrawal_parameters; 
 
 #define LR_STRATEGIES_COUNT 11
 

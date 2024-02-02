@@ -64,9 +64,8 @@ void handle_init_contract(ethPluginInitContract_t *msg) {
         case KILN_LR_QUEUE_WITHDRAWAL:
             context->next_param = LR_QUEUE_WITHDRAWAL_STRATEGY_INDEXES_OFFSET;
             break;
-        case KILN_LR_QUEUE_WITHDRAWALS:
-            break;
         case KILN_LR_COMPLETE_QUEUED_WITHDRAWAL:
+            context->next_param = LR_COMPLETE_QUEUED_WITHDRAWAL_QUEUEDWITHDRAWAL_OFFSET;
             break;
 
         default:

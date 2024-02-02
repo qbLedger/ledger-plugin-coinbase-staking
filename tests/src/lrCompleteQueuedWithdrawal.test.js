@@ -25,18 +25,38 @@ nano_models.forEach(function (model) {
     zemu(model, async (sim, eth) => {
       const contract = new ethers.Contract(contractAddr, abi);
 
-      const { data } = await contract.populateTransaction.queueWithdrawal(
-        [1, 2],
-        [
-          '0x54945180dB7943c0ed0FEE7EdaB2Bd24620256bc', // cbETH strat
+      const queuedWithdrawal = {
+        strategies: [
           '0x13760F50a9d7377e4F20CB8CF9e4c26586c658ff', // ankrETH strat
+          '0xa4C637e0F704745D182e4D38cAb7E7485321d059', // OETH strat
         ],
-        [42, 54],
-        '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045', // withdrawer
-        true // undelegateIfPossible
-      );
+        shares: [1000, 2000],
+        depositor: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045',
+        withdrawerAndNonce: {
+          withdrawer: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045',
+          nonce: 1,
+        },
+        withdrawalStartBlock: 12345678,
+        delegatedAddress: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045', // Placeholder delegated address
+      };
+      const tokens = [
+        '0xE95A203B1a91a908F9B9CE46459d101078c2c3cb', // ankrETH erc20
+        '0x856c4Efb76C1D1AE02e20CEB03A2A6a08b0b8dC3', // OETH erc20
+      ]; // Placeholder token addresses
+      const middlewareTimesIndex = 0; // Placeholder middleware times index
+      const receiveAsTokens = true; // Placeholder boolean
+
+      // Generate the transaction data 0xf044c946
+      const { data } =
+        await contract.populateTransaction.completeQueuedWithdrawal(
+          queuedWithdrawal,
+          tokens,
+          middlewareTimesIndex,
+          receiveAsTokens
+        );
 
       let unsignedTx = genericTx;
+      console.log(unsignedTx);
 
       unsignedTx.to = contractAddr;
       unsignedTx.data = data;
@@ -58,7 +78,7 @@ nano_models.forEach(function (model) {
       await waitForAppScreen(sim);
       await sim.navigateAndCompareSnapshots(
         '.',
-        model.name + '_lrQueueWithdrawal',
+        model.name + '_lrCompleteQueuedWithdrawal',
         [right_clicks, 0]
       );
       await tx;

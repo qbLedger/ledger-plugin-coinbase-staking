@@ -52,12 +52,8 @@ void handle_query_contract_id(ethQueryContractID_t *msg) {
             strlcpy(msg->version, "Queue Withdrawal", msg->versionLength);
             break;
 
-        case KILN_LR_QUEUE_WITHDRAWALS:
-            strlcpy(msg->version, "Queue Withdrawals", msg->versionLength);
-            break;
-
         case KILN_LR_COMPLETE_QUEUED_WITHDRAWAL:
-            strlcpy(msg->version, "Complete Queued Withdrawal", msg->versionLength);
+            strlcpy(msg->version, "Queued Withdrawal", msg->versionLength);
             break;
 
         default:
