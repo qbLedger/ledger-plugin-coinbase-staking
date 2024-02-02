@@ -87,16 +87,17 @@ extern const char lr_strategy_addresses[LR_STRATEGIES_COUNT][ADDRESS_STR_LEN];
 extern const char lr_erc20_addresses[LR_STRATEGIES_COUNT][ADDRESS_STR_LEN];
 extern const char lr_tickers[LR_STRATEGIES_COUNT][MAX_TICKER_LEN];
 
+// max number of strategies / erc20 to display
+#define MAX_DISPLAY_COUNT 3
+
 typedef struct context_t {
     uint8_t next_param;
 
-    // parameters for LR functions
-    char lr_strategy_address[ADDRESS_STR_LEN];
-    char lr_strategy_name[MAX_TICKER_LEN];
-
-    char lr_erc20_address[ADDRESS_STR_LEN];
-    char lr_erc20_name[MAX_TICKER_LEN];
-    uint8_t lr_erc20_amount[INT256_LENGTH];
+    // buffers for LR display
+    int lr_strategy_to_display[MAX_DISPLAY_COUNT];
+    int lr_erc20_to_display[MAX_DISPLAY_COUNT];
+    uint8_t lr_erc20_amount_to_display[MAX_DISPLAY_COUNT][INT256_LENGTH];
+    size_t lr_display_buffer_size;
 
 
     selector_t selectorIndex;

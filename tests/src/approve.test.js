@@ -26,8 +26,8 @@ nano_models.forEach(function (model) {
       const contract = new ethers.Contract(contractAddr, abi);
 
       const { data } = await contract.populateTransaction.depositIntoStrategy(
-        '0x1BeE69b7dFFfA4E2d53C2a2Df135C388AD25dCD2',
-        '0xae78736Cd615f374D3085123A210448E74Fc6393',
+        '0x0Fe4F44beE93503346A3Ac9EE5A26b130a5796d6',
+        '0x1e68238ce926dec62b3fbc99ab06eb1d85ce0270',
         42
       );
 
