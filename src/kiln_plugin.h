@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string.h>
-#include <ctype.h> 
 
 #include "eth_internals.h"
 #include "eth_plugin_interface.h"
@@ -30,7 +29,9 @@
 // LR selectors
 // --- 12. depositIntoStrategy(address,address,uint256)
 // --- 13. queueWithdrawal(uint256[],address[],uint256[],address,bool)
-// --- 14. completeQueuedWithdrawal((address,address,address,uint256,uint32,address[],uint256[]),address[],uint256,bool)
+// --- 14.
+// completeQueuedWithdrawal((address,address,address,uint256,uint32,address[],uint256[]),address[],uint256,bool)
+//
 #define NUM_SELECTORS 15
 
 // Selectors available (see mapping above).
@@ -87,7 +88,7 @@ typedef enum {
     LR_COMPLETE_QUEUED_WITHDRAWAL_MIDDLEWARETIMEINDEX,
     LR_COMPLETE_QUEUED_WITHDRAWAL_RECEIVEASTOKENS,
     LR_COMPLETE_QUEUED_WITHDRAWAL_UNEXPECTED_PARAMETER
-} lr_complete_queued_withdrawal_parameters; 
+} lr_complete_queued_withdrawal_parameters;
 
 #define LR_STRATEGIES_COUNT 11
 
@@ -106,7 +107,6 @@ typedef struct context_t {
     int lr_erc20_to_display[MAX_DISPLAY_COUNT];
     uint8_t lr_erc20_amount_to_display[MAX_DISPLAY_COUNT][INT256_LENGTH];
     size_t lr_display_buffer_size;
-
 
     selector_t selectorIndex;
 } context_t;

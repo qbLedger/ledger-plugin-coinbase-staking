@@ -1,16 +1,16 @@
 #include "kiln_plugin.h"
 
-/* 
-    * Compare two addresses
-    *
-    * @param a: first address
-    * @param b: second address
-    * 
-    * @return true if the addresses are the same
-*/
+/*
+ * Compare two addresses
+ *
+ * @param a: first address
+ * @param b: second address
+ *
+ * @return true if the addresses are the same
+ */
 bool compare_addresses(const char *a, const char *b) {
     for (size_t i = 0; i < ADDRESS_STR_LEN; i += 1) {
-        if (tolower((unsigned char)a[i]) != tolower((unsigned char)b[i])) {
+        if (tolower((unsigned char) a[i]) != tolower((unsigned char) b[i])) {
             return false;
         }
     }
@@ -18,21 +18,21 @@ bool compare_addresses(const char *a, const char *b) {
 }
 
 /*
-    * If address is a known erc20, update lr display context with its name
-    * otherwise set it to unkwown (-1)
-    *
-    * @param address: address to compare
-    * @param index: index of the erc20 in the context
-    * @param context: context to update
-    * 
-    * @note impacts the following context storage:
-    * `context->lr_strategy_to_display`: set index of the erc20 in the context
-*/
+ * If address is a known erc20, update lr display context with its name
+ * otherwise set it to unkwown (-1)
+ *
+ * @param address: address to compare
+ * @param index: index of the erc20 in the context
+ * @param context: context to update
+ *
+ * @note impacts the following context storage:
+ * `context->lr_strategy_to_display`: set index of the erc20 in the context
+ */
 void find_lr_known_erc20(const char *address, size_t index, context_t *context) {
     for (size_t i = 0; i < LR_STRATEGIES_COUNT; i++) {
         if (compare_addresses(address, &lr_erc20_addresses[i])) {
             context->lr_erc20_to_display[index] = i;
-            return;  
+            return;
         }
     }
     // if unknown erc20, indicate it
@@ -40,21 +40,21 @@ void find_lr_known_erc20(const char *address, size_t index, context_t *context) 
 }
 
 /*
-    * If address is a known strategy, update lr display context with its name
-    * otherwise set it to unkwown (-1)
-    * 
-    * @param address: address to compare
-    * @param index: index of the strategy in the context
-    * @param context: context to update
-    * 
-    * @note impacts the following context storage:
-    *  `context->lr_strategy_to_display`: set index of the strategy in the context
-*/
+ * If address is a known strategy, update lr display context with its name
+ * otherwise set it to unkwown (-1)
+ *
+ * @param address: address to compare
+ * @param index: index of the strategy in the context
+ * @param context: context to update
+ *
+ * @note impacts the following context storage:
+ *  `context->lr_strategy_to_display`: set index of the strategy in the context
+ */
 void find_lr_known_strategy(const char *address, size_t index, context_t *context) {
     for (size_t i = 0; i < LR_STRATEGIES_COUNT; i++) {
         if (compare_addresses(address, &lr_strategy_addresses[i])) {
             context->lr_strategy_to_display[index] = i;
-            return;  
+            return;
         }
     }
     // if unknown strategy, indicate it
@@ -62,64 +62,50 @@ void find_lr_known_strategy(const char *address, size_t index, context_t *contex
 }
 
 /*
-    * Handle the parameters for the depositIntoStrategy(strategy,erc20,amount)
-    * selector
-    * 
-    * @param msg: message containing the parameter
-    * @param context: context to update
-    * 
-    * @note impacts the following context storage:
-    *   `context->next_param`: set to the next parameter to handle    
-    *   `context->lr_strategy_to_display`: set index of the strategy in the context
-    *   `context->lr_erc20_to_display`: set index of the erc20 in the context
-    *   `context->lr_erc20_amount_to_display`: set amount of the erc20 in the context
-    *
-*/
+ * Handle the parameters for the depositIntoStrategy(strategy,erc20,amount)
+ * selector
+ *
+ * @param msg: message containing the parameter
+ * @param context: context to update
+ *
+ * @note impacts the following context storage:
+ *   `context->next_param`: set to the next parameter to handle
+ *   `context->lr_strategy_to_display`: set index of the strategy in the context
+ *   `context->lr_erc20_to_display`: set index of the erc20 in the context
+ *   `context->lr_erc20_amount_to_display`: set amount of the erc20 in the context
+ *
+ */
 void handle_lr_deposit_into_strategy(ethPluginProvideParameter_t *msg, context_t *context) {
     uint8_t buffer[ADDRESS_LENGTH];
     char address_buffer[ADDRESS_STR_LEN];
-    
+
     switch (context->next_param) {
         case LR_DEPOSIT_INTO_STRATEGY_STRATEGY:
-            copy_address(
-                buffer,
-                msg->parameter,
-                sizeof(buffer)
-            );
-            getEthDisplayableAddress(
-                buffer,
-                address_buffer,
-                sizeof(address_buffer),
-                msg->pluginSharedRW->sha3,
-                0
-            );
+            copy_address(buffer, msg->parameter, sizeof(buffer));
+            getEthDisplayableAddress(buffer,
+                                     address_buffer,
+                                     sizeof(address_buffer),
+                                     msg->pluginSharedRW->sha3,
+                                     0);
             find_lr_known_strategy(&address_buffer, 0, context);
 
             context->next_param = LR_DEPOSIT_INTO_STRATEGY_TOKEN;
             break;
         case LR_DEPOSIT_INTO_STRATEGY_TOKEN:
-            copy_address(
-                buffer,
-                msg->parameter,
-                sizeof(buffer)
-            );
-            getEthDisplayableAddress(
-                buffer,
-                address_buffer,
-                sizeof(address_buffer),
-                msg->pluginSharedRW->sha3,
-                0
-            );
+            copy_address(buffer, msg->parameter, sizeof(buffer));
+            getEthDisplayableAddress(buffer,
+                                     address_buffer,
+                                     sizeof(address_buffer),
+                                     msg->pluginSharedRW->sha3,
+                                     0);
             find_lr_known_erc20(&address_buffer, 0, context);
 
             context->next_param = LR_DEPOSIT_INTO_STRATEGY_AMOUNT;
             break;
         case LR_DEPOSIT_INTO_STRATEGY_AMOUNT:
-            copy_parameter(
-                context->lr_erc20_amount_to_display[0],
-                msg->parameter,
-                sizeof(context->lr_erc20_amount_to_display[0])
-            );
+            copy_parameter(context->lr_erc20_amount_to_display[0],
+                           msg->parameter,
+                           sizeof(context->lr_erc20_amount_to_display[0]));
             context->next_param = LR_DEPOSIT_INTO_STRATEGY_UNEXPECTED_PARAMETER;
             break;
         default:
@@ -148,7 +134,7 @@ void handle_lr_queue_withdrawal(ethPluginProvideParameter_t *msg, context_t *con
             break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
-            //msg->result = ETH_PLUGIN_RESULT_ERROR;
+            // msg->result = ETH_PLUGIN_RESULT_ERROR;
             break;
     }
 }
@@ -169,7 +155,7 @@ void handle_lr_complete_queued_withdrawal(ethPluginProvideParameter_t *msg, cont
             break;
         default:
             PRINTF("Param not supported: %d\n", context->next_param);
-            //msg->result = ETH_PLUGIN_RESULT_ERROR;
+            // msg->result = ETH_PLUGIN_RESULT_ERROR;
             break;
     }
 }
@@ -220,7 +206,7 @@ void handle_provide_parameter(ethPluginProvideParameter_t *msg) {
             msg->result = ETH_PLUGIN_RESULT_OK;
             break;
         case KILN_LR_COMPLETE_QUEUED_WITHDRAWAL:
-            handle_lr_complete_queued_withdrawal(msg, context);  
+            handle_lr_complete_queued_withdrawal(msg, context);
             msg->result = ETH_PLUGIN_RESULT_OK;
             break;
 
