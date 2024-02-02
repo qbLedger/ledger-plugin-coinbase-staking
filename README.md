@@ -126,15 +126,15 @@ The flow processed in [GitHub Actions](https://github.com/features/actions) is t
 
 ### LR Deposit Into Strategy
 
-![](/tests/snapshots/nanos_lrDepositIntoStrategy/00000.png) ![](/tests/snapshots/nanos_lrDepositIntoStrategy/00001.png) ![](/tests/snapshots/nanos_lrDepositIntoStrategy/00002.png) ![](/tests/snapshots/nanos_lrDepositIntoStrategy/00003.png) ![](/tests/snapshots/nanos_lrDepositIntoStrategy/00004.png) ![](/tests/snapshots/nanos_lrDepositIntoStrategy/00005.png)
+![](/tests/snapshots/nanos_lrDepositIntoStrategyNormal/00000.png) ![](/tests/snapshots/nanos_lrDepositIntoStrategyNormal/00001.png) ![](/tests/snapshots/nanos_lrDepositIntoStrategyNormal/00002.png) ![](/tests/snapshots/nanos_lrDepositIntoStrategyNormal/00003.png) ![](/tests/snapshots/nanos_lrDepositIntoStrategyNormal/00004.png) ![](/tests/snapshots/nanos_lrDepositIntoStrategyNormal/00005.png)
 
-### LR Queue Withdraw
+### LR Queue Withdrawal
 
-![](/tests/snapshots/nanos_lrQueueWithdraw/00000.png) ![](/tests/snapshots/nanos_lrQueueWithdraw/00001.png) ![](/tests/snapshots/nanos_lrQueueWithdraw/00002.png) ![](/tests/snapshots/nanos_lrQueueWithdraw/00003.png) ![](/tests/snapshots/nanos_lrQueueWithdraw/00004.png) ![](/tests/snapshots/nanos_lrQueueWithdraw/00005.png)
+![](/tests/snapshots/nanos_lrQueueWithdrawal/00000.png) ![](/tests/snapshots/nanos_lrQueueWithdrawal/00001.png) ![](/tests/snapshots/nanos_lrQueueWithdrawal/00002.png) ![](/tests/snapshots/nanos_lrQueueWithdrawal/00003.png) ![](/tests/snapshots/nanos_lrQueueWithdrawal/00004.png) ![](/tests/snapshots/nanos_lrQueueWithdrawal/00005.png)
 
-### LR Complete Queued Withdraw
+### LR Complete Queued Withdrawal
 
-![](/tests/snapshots/nanos_lrCompleteQueuedWithdraw/00000.png) ![](/tests/snapshots/nanos_lrCompleteQueuedWithdraw/00001.png) ![](/tests/snapshots/nanos_lrCompleteQueuedWithdraw/00002.png) ![](/tests/snapshots/nanos_lrCompleteQueuedWithdraw/00003.png) ![](/tests/snapshots/nanos_lrCompleteQueuedWithdraw/00004.png) ![](/tests/snapshots/nanos_lrCompleteQueuedWithdraw/00005.png)
+![](/tests/snapshots/nanos_lrCompleteQueuedWithdrawal/00000.png) ![](/tests/snapshots/nanos_lrCompleteQueuedWithdrawal/00001.png) ![](/tests/snapshots/nanos_lrCompleteQueuedWithdrawal/00002.png) ![](/tests/snapshots/nanos_lrCompleteQueuedWithdrawal/00003.png) ![](/tests/snapshots/nanos_lrCompleteQueuedWithdrawal/00004.png) ![](/tests/snapshots/nanos_lrCompleteQueuedWithdrawal/00005.png)
 
 ## NANO X
 
@@ -188,12 +188,12 @@ The flow processed in [GitHub Actions](https://github.com/features/actions) is t
 
 ### LR Deposit Into Strategy
 
-![](/tests/snapshots/nanox_lrDepositIntoStrategy/00000.png) ![](/tests/snapshots/nanox_lrDepositIntoStrategy/00001.png) ![](/tests/snapshots/nanox_lrDepositIntoStrategy/00002.png) ![](/tests/snapshots/nanox_lrDepositIntoStrategy/00003.png) ![](/tests/snapshots/nanox_lrDepositIntoStrategy/00004.png) ![](/tests/snapshots/nanox_lrDepositIntoStrategy/00005.png)
+![](/tests/snapshots/nanox_lrDepositIntoStrategyNormal/00000.png) ![](/tests/snapshots/nanox_lrDepositIntoStrategyNormal/00001.png) ![](/tests/snapshots/nanox_lrDepositIntoStrategyNormal/00002.png) ![](/tests/snapshots/nanox_lrDepositIntoStrategyNormal/00003.png) ![](/tests/snapshots/nanox_lrDepositIntoStrategyNormal/00004.png) ![](/tests/snapshots/nanox_lrDepositIntoStrategyNormal/00005.png)
 
-### LR Queue Withdraw
+### LR Queue Withdrawal
 
-![](/tests/snapshots/nanox_lrQueueWithdraw/00000.png) ![](/tests/snapshots/nanox_lrQueueWithdraw/00001.png) ![](/tests/snapshots/nanox_lrQueueWithdraw/00002.png) ![](/tests/snapshots/nanox_lrQueueWithdraw/00003.png) ![](/tests/snapshots/nanox_lrQueueWithdraw/00004.png) ![](/tests/snapshots/nanox_lrQueueWithdraw/00005.png)
+![](/tests/snapshots/nanox_lrQueueWithdrawal/00000.png) ![](/tests/snapshots/nanox_lrQueueWithdrawal/00001.png) ![](/tests/snapshots/nanox_lrQueueWithdrawal/00002.png) ![](/tests/snapshots/nanox_lrQueueWithdrawal/00003.png) ![](/tests/snapshots/nanox_lrQueueWithdrawal/00004.png) ![](/tests/snapshots/nanox_lrQueueWithdrawal/00005.png)
 
-### LR Complete Queued Withdraw
+### LR Complete Queued Withdrawal
 
-![](/tests/snapshots/nanox_lrCompleteQueuedWithdraw/00000.png) ![](/tests/snapshots/nanox_lrCompleteQueuedWithdraw/00001.png) ![](/tests/snapshots/nanox_lrCompleteQueuedWithdraw/00002.png) ![](/tests/snapshots/nanox_lrCompleteQueuedWithdraw/00003.png) ![](/tests/snapshots/nanox_lrCompleteQueuedWithdraw/00004.png) ![](/tests/snapshots/nanox_lrCompleteQueuedWithdraw/00005.png)
+![](/tests/snapshots/nanox_lrCompleteQueuedWithdrawal/00000.png) ![](/tests/snapshots/nanox_lrCompleteQueuedWithdrawal/00001.png) ![](/tests/snapshots/nanox_lrCompleteQueuedWithdrawal/00002.png) ![](/tests/snapshots/nanox_lrCompleteQueuedWithdrawal/00003.png) ![](/tests/snapshots/nanox_lrCompleteQueuedWithdrawal/00004.png) ![](/tests/snapshots/nanox_lrCompleteQueuedWithdrawal/00005.png)
