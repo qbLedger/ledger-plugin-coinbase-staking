@@ -205,7 +205,7 @@ static bool deposit_into_stragey_ui_lr(ethQueryContractUI_t *msg, context_t *con
     return ret;
 }
 
-static bool queue_withdrawal_ui_lr(ethQueryContractUI_t *msg, context_t *context) {
+static bool queue_withdrawal_ui_lr(ethQueryContractUI_t *msg) {
     // TODO: display strategies
     bool ret = false;
 
@@ -223,7 +223,7 @@ static bool queue_withdrawal_ui_lr(ethQueryContractUI_t *msg, context_t *context
     return ret;
 }
 
-static bool complete_queued_withdrawal_ui_lr(ethQueryContractUI_t *msg, context_t *context) {
+static bool complete_queued_withdrawal_ui_lr(ethQueryContractUI_t *msg) {
     // TODO: display strategies
     bool ret = false;
 
@@ -290,11 +290,11 @@ void handle_query_contract_ui(ethQueryContractUI_t *msg) {
             break;
 
         case KILN_LR_QUEUE_WITHDRAWAL:
-            ret = queue_withdrawal_ui_lr(msg, context);
+            ret = queue_withdrawal_ui_lr(msg);
             break;
 
         case KILN_LR_COMPLETE_QUEUED_WITHDRAWAL:
-            ret = complete_queued_withdrawal_ui_lr(msg, context);
+            ret = complete_queued_withdrawal_ui_lr(msg);
             break;
 
         default:

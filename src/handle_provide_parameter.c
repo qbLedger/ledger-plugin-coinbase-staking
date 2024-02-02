@@ -1,4 +1,5 @@
 #include "kiln_plugin.h"
+#include <ctype.h>
 
 /*
  * Compare two addresses
@@ -30,7 +31,7 @@ bool compare_addresses(const char *a, const char *b) {
  */
 void find_lr_known_erc20(const char *address, size_t index, context_t *context) {
     for (size_t i = 0; i < LR_STRATEGIES_COUNT; i++) {
-        if (compare_addresses(address, &lr_erc20_addresses[i])) {
+        if (compare_addresses(address, lr_erc20_addresses[i])) {
             context->lr_erc20_to_display[index] = i;
             return;
         }
@@ -52,7 +53,7 @@ void find_lr_known_erc20(const char *address, size_t index, context_t *context) 
  */
 void find_lr_known_strategy(const char *address, size_t index, context_t *context) {
     for (size_t i = 0; i < LR_STRATEGIES_COUNT; i++) {
-        if (compare_addresses(address, &lr_strategy_addresses[i])) {
+        if (compare_addresses(address, lr_strategy_addresses[i])) {
             context->lr_strategy_to_display[index] = i;
             return;
         }
@@ -87,7 +88,7 @@ void handle_lr_deposit_into_strategy(ethPluginProvideParameter_t *msg, context_t
                                      sizeof(address_buffer),
                                      msg->pluginSharedRW->sha3,
                                      0);
-            find_lr_known_strategy(&address_buffer, 0, context);
+            find_lr_known_strategy(address_buffer, 0, context);
 
             context->next_param = LR_DEPOSIT_INTO_STRATEGY_TOKEN;
             break;
@@ -98,7 +99,7 @@ void handle_lr_deposit_into_strategy(ethPluginProvideParameter_t *msg, context_t
                                      sizeof(address_buffer),
                                      msg->pluginSharedRW->sha3,
                                      0);
-            find_lr_known_erc20(&address_buffer, 0, context);
+            find_lr_known_erc20(address_buffer, 0, context);
 
             context->next_param = LR_DEPOSIT_INTO_STRATEGY_AMOUNT;
             break;
@@ -137,6 +138,7 @@ void handle_lr_queue_withdrawal(ethPluginProvideParameter_t *msg, context_t *con
             // msg->result = ETH_PLUGIN_RESULT_ERROR;
             break;
     }
+    msg->result = ETH_PLUGIN_RESULT_OK;
 }
 
 void handle_lr_complete_queued_withdrawal(ethPluginProvideParameter_t *msg, context_t *context) {
@@ -158,6 +160,7 @@ void handle_lr_complete_queued_withdrawal(ethPluginProvideParameter_t *msg, cont
             // msg->result = ETH_PLUGIN_RESULT_ERROR;
             break;
     }
+    msg->result = ETH_PLUGIN_RESULT_OK;
 }
 
 void handle_provide_parameter(ethPluginProvideParameter_t *msg) {
