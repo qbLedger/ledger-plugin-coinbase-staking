@@ -110,19 +110,19 @@ The flow processed in [GitHub Actions](https://github.com/features/actions) is t
 
 ### Stake v2
 
-![](/tests/snapshots/nanos_stakeV2/00000.png) ![](/tests/snapshots/nanos_stakeV2/00001.png) ![](/tests/snapshots/nanos_stakeV2/00002.png) ![](/tests/snapshots/nanos_stakeV2/00003.png) ![](/tests/snapshots/nanos_stakeV2/00004.png) ![](/tests/snapshots/nanos_stakeV2/00005.png)
+![](/tests/snapshots/nanos_stakev2/00000.png) ![](/tests/snapshots/nanos_stakev2/00001.png) ![](/tests/snapshots/nanos_stakev2/00002.png) ![](/tests/snapshots/nanos_stakev2/00003.png) ![](/tests/snapshots/nanos_stakev2/00004.png) ![](/tests/snapshots/nanos_stakev2/00005.png)
 
-### RequestExit v2
+### RequestExit V2
 
-![](/tests/snapshots/nanos_requestExitV2/00000.png) ![](/tests/snapshots/nanos_requestExitV2/00001.png) ![](/tests/snapshots/nanos_requestExitV2/00002.png) ![](/tests/snapshots/nanos_requestExitV2/00003.png) ![](/tests/snapshots/nanos_requestExitV2/00004.png) ![](/tests/snapshots/nanos_requestExitV2/00005.png)
+![](/tests/snapshots/nanos_requestExitv2/00000.png) ![](/tests/snapshots/nanos_requestExitv2/00001.png) ![](/tests/snapshots/nanos_requestExitv2/00002.png) ![](/tests/snapshots/nanos_requestExitv2/00003.png) ![](/tests/snapshots/nanos_requestExitv2/00004.png) ![](/tests/snapshots/nanos_requestExitv2/00005.png)
 
-### MultiClaim v2
+### MultiClaim V2
 
-![](/tests/snapshots/nanos_multiClaimV2/00000.png) ![](/tests/snapshots/nanos_multiClaimV2/00001.png) ![](/tests/snapshots/nanos_multiClaimV2/00002.png) ![](/tests/snapshots/nanos_multiClaimV2/00003.png) ![](/tests/snapshots/nanos_multiClaimV2/00004.png) ![](/tests/snapshots/nanos_multiClaimV2/00005.png)
+![](/tests/snapshots/nanos_multiClaimv2/00000.png) ![](/tests/snapshots/nanos_multiClaimv2/00001.png) ![](/tests/snapshots/nanos_multiClaimv2/00002.png) ![](/tests/snapshots/nanos_multiClaimv2/00003.png) ![](/tests/snapshots/nanos_multiClaimv2/00004.png) ![](/tests/snapshots/nanos_multiClaimv2/00005.png)
 
-### Claim v2
+### Claim V2
 
-![](/tests/snapshots/nanos_claimV2/00000.png) ![](/tests/snapshots/nanos_claimV2/00001.png) ![](/tests/snapshots/nanos_claimV2/00002.png) ![](/tests/snapshots/nanos_claimV2/00003.png) ![](/tests/snapshots/nanos_claimV2/00004.png) ![](/tests/snapshots/nanos_claimV2/00005.png)
+![](/tests/snapshots/nanos_claimv2/00000.png) ![](/tests/snapshots/nanos_claimv2/00001.png) ![](/tests/snapshots/nanos_claimv2/00002.png) ![](/tests/snapshots/nanos_claimv2/00003.png) ![](/tests/snapshots/nanos_claimv2/00004.png) ![](/tests/snapshots/nanos_claimv2/00005.png)
 
 ### LR Deposit Into Strategy
 
@@ -172,19 +172,19 @@ The flow processed in [GitHub Actions](https://github.com/features/actions) is t
 
 ### Stake V2
 
-![](/tests/snapshots/nanox_stakeV2/00000.png) ![](/tests/snapshots/nanox_stakeV2/00001.png) ![](/tests/snapshots/nanox_stakeV2/00002.png) ![](/tests/snapshots/nanox_stakeV2/00003.png) ![](/tests/snapshots/nanox_stakeV2/00004.png) ![](/tests/snapshots/nanox_stakeV2/00005.png)
+![](/tests/snapshots/nanox_stakev2/00000.png) ![](/tests/snapshots/nanox_stakev2/00001.png) ![](/tests/snapshots/nanox_stakev2/00002.png) ![](/tests/snapshots/nanox_stakev2/00003.png) ![](/tests/snapshots/nanox_stakev2/00004.png) ![](/tests/snapshots/nanox_stakev2/00005.png)
 
 ### RequestExit V2
 
-![](/tests/snapshots/nanox_requestExitV2/00000.png) ![](/tests/snapshots/nanox_requestExitV2/00001.png) ![](/tests/snapshots/nanox_requestExitV2/00002.png) ![](/tests/snapshots/nanox_requestExitV2/00003.png) ![](/tests/snapshots/nanox_requestExitV2/00004.png) ![](/tests/snapshots/nanox_requestExitV2/00005.png)
+![](/tests/snapshots/nanox_requestExitv2/00000.png) ![](/tests/snapshots/nanox_requestExitv2/00001.png) ![](/tests/snapshots/nanox_requestExitv2/00002.png) ![](/tests/snapshots/nanox_requestExitv2/00003.png) ![](/tests/snapshots/nanox_requestExitv2/00004.png) ![](/tests/snapshots/nanox_requestExitv2/00005.png)
 
 ### MultiClaim V2
 
-![](/tests/snapshots/nanox_multiClaimV2/00000.png) ![](/tests/snapshots/nanox_multiClaimV2/00001.png) ![](/tests/snapshots/nanox_multiClaimV2/00002.png) ![](/tests/snapshots/nanox_multiClaimV2/00003.png) ![](/tests/snapshots/nanox_multiClaimV2/00004.png) ![](/tests/snapshots/nanox_multiClaimV2/00005.png)
+![](/tests/snapshots/nanox_multiClaimv2/00000.png) ![](/tests/snapshots/nanox_multiClaimv2/00001.png) ![](/tests/snapshots/nanox_multiClaimv2/00002.png) ![](/tests/snapshots/nanox_multiClaimv2/00003.png) ![](/tests/snapshots/nanox_multiClaimv2/00004.png) ![](/tests/snapshots/nanox_multiClaimv2/00005.png)
 
 ### Claim V2
 
-![](/tests/snapshots/nanox_claimV2/00000.png) ![](/tests/snapshots/nanox_claimV2/00001.png) ![](/tests/snapshots/nanox_claimV2/00002.png) ![](/tests/snapshots/nanox_claimV2/00003.png) ![](/tests/snapshots/nanox_claimV2/00004.png) ![](/tests/snapshots/nanox_claimV2/00005.png)
+![](/tests/snapshots/nanox_claimv2/00000.png) ![](/tests/snapshots/nanox_claimv2/00001.png) ![](/tests/snapshots/nanox_claimv2/00002.png) ![](/tests/snapshots/nanox_claimv2/00003.png) ![](/tests/snapshots/nanox_claimv2/00004.png) ![](/tests/snapshots/nanox_claimv2/00005.png)
 
 ### LR Deposit Into Strategy
 
