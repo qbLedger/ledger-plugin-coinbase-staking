@@ -173,6 +173,87 @@ static bool claim_ui_v2(ethQueryContractUI_t *msg) {
     return ret;
 }
 
+static bool deposit_into_stragey_ui_lr(ethQueryContractUI_t *msg, context_t *context) {
+    bool ret = false;
+    lr_deposit_t *params = &context->param_data.lr_deposit;
+
+    switch (msg->screenIndex) {
+        case 0:
+            strlcpy(msg->title, "EigenLayer", msg->titleLength);
+            strlcpy(msg->msg, "Deposit In Strategy", msg->msgLength);
+            ret = true;
+            break;
+        case 1:
+            strlcpy(msg->title, "Strategy", msg->titleLength);
+            if (params->strategy_to_display == -1 ||
+                params->strategy_to_display >= LR_STRATEGIES_COUNT) {
+                strlcpy(msg->msg, "UNKNOWN", msg->msgLength);
+            } else {
+                strlcpy(msg->msg, lr_tickers[params->strategy_to_display], MAX_TICKER_LEN);
+            }
+            ret = true;
+            break;
+        case 2:
+            strlcpy(msg->title, "Amount", msg->titleLength);
+            amountToString(
+                params->erc20_amount_to_display,
+                sizeof(params->erc20_amount_to_display),
+                ERC20_DECIMALS,
+                params->erc20_to_display == -1 || params->erc20_to_display >= LR_STRATEGIES_COUNT
+                    ? "UNKNOWN"
+                    : lr_tickers[params->erc20_to_display],
+                msg->msg,
+                msg->msgLength);
+            ret = true;
+            break;
+        default:
+            PRINTF("Received an invalid screenIndex\n");
+            break;
+    }
+    return ret;
+}
+
+static bool queue_withdrawal_ui_lr(ethQueryContractUI_t *msg, context_t *context) {
+    bool ret = false;
+    lr_queue_withdrawal_t *params = &context->param_data.lr_queue_withdrawal;
+
+    switch (msg->screenIndex) {
+        case 0:
+            strlcpy(msg->title, "EigenLayer", msg->titleLength);
+            strlcpy(msg->msg, "Queue Withdrawal", msg->msgLength);
+            ret = true;
+            break;
+
+        case 1:
+            strlcpy(msg->title, "Withdrawer", msg->titleLength);
+            strlcpy(msg->msg, params->withdrawer, msg->msgLength);
+            ret = true;
+            break;
+
+        default:
+            PRINTF("Received an invalid screenIndex\n");
+            break;
+    }
+    return ret;
+}
+
+static bool complete_queued_withdrawal_ui_lr(ethQueryContractUI_t *msg) {
+    bool ret = false;
+
+    switch (msg->screenIndex) {
+        case 0:
+            strlcpy(msg->title, "EigenLayer", msg->titleLength);
+            strlcpy(msg->msg, "Complete Withdrawal", msg->msgLength);
+            ret = true;
+            break;
+
+        default:
+            PRINTF("Received an invalid screenIndex\n");
+            break;
+    }
+    return ret;
+}
+
 void handle_query_contract_ui(ethQueryContractUI_t *msg) {
     context_t *context = (context_t *) msg->pluginContext;
     bool ret = false;
@@ -215,6 +296,18 @@ void handle_query_contract_ui(ethQueryContractUI_t *msg) {
 
         case KILN_V2_CLAIM:
             ret = claim_ui_v2(msg);
+            break;
+
+        case KILN_LR_DEPOSIT_INTO_STRATEGY:
+            ret = deposit_into_stragey_ui_lr(msg, context);
+            break;
+
+        case KILN_LR_QUEUE_WITHDRAWAL:
+            ret = queue_withdrawal_ui_lr(msg, context);
+            break;
+
+        case KILN_LR_COMPLETE_QUEUED_WITHDRAWAL:
+            ret = complete_queued_withdrawal_ui_lr(msg);
             break;
 
         default:

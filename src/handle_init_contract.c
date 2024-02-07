@@ -41,7 +41,6 @@ void handle_init_contract(ethPluginInitContract_t *msg) {
         case KILN_V1_WITHDRAW:
         case KILN_V1_WITHDRAW_EL:
         case KILN_V1_WITHDRAW_CL:
-            context->next_param = WITHDRAW_VALIDATION_OFFSET;
             break;
 
         case KILN_V1_BATCH_WITHDRAW:
@@ -56,6 +55,16 @@ void handle_init_contract(ethPluginInitContract_t *msg) {
         case KILN_V2_REQUEST_EXIT:
         case KILN_V2_MULTICLAIM:
         case KILN_V2_CLAIM:
+            break;
+
+        case KILN_LR_DEPOSIT_INTO_STRATEGY:
+            context->next_param = LR_DEPOSIT_INTO_STRATEGY_STRATEGY;
+            break;
+        case KILN_LR_QUEUE_WITHDRAWAL:
+            context->next_param = LR_QUEUE_WITHDRAWAL_STRATEGY_INDEXES_OFFSET;
+            break;
+        case KILN_LR_COMPLETE_QUEUED_WITHDRAWAL:
+            context->next_param = LR_COMPLETE_QUEUED_WITHDRAWAL_QUEUEDWITHDRAWAL_OFFSET;
             break;
 
         default:

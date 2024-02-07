@@ -44,6 +44,18 @@ void handle_query_contract_id(ethQueryContractID_t *msg) {
             strlcpy(msg->version, "Claim", msg->versionLength);
             break;
 
+        case KILN_LR_DEPOSIT_INTO_STRATEGY:
+            strlcpy(msg->version, "Liquid Restaking", msg->versionLength);
+            break;
+
+        case KILN_LR_QUEUE_WITHDRAWAL:
+            strlcpy(msg->version, "Liquid Restaking", msg->versionLength);
+            break;
+
+        case KILN_LR_COMPLETE_QUEUED_WITHDRAWAL:
+            strlcpy(msg->version, "Liquid Restaking", msg->versionLength);
+            break;
+
         default:
             PRINTF("Selector Index not supported: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;

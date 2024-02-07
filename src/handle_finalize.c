@@ -21,6 +21,18 @@ void handle_finalize(ethPluginFinalize_t *msg) {
             msg->numScreens = 1;
             msg->result = ETH_PLUGIN_RESULT_OK;
             break;
+        case KILN_LR_DEPOSIT_INTO_STRATEGY:
+            msg->numScreens = 3;
+            msg->result = ETH_PLUGIN_RESULT_OK;
+            break;
+        case KILN_LR_QUEUE_WITHDRAWAL:
+            msg->numScreens = 2;
+            msg->result = ETH_PLUGIN_RESULT_OK;
+            break;
+        case KILN_LR_COMPLETE_QUEUED_WITHDRAWAL:
+            msg->numScreens = 1;
+            msg->result = ETH_PLUGIN_RESULT_OK;
+            break;
         default:
             PRINTF("Selector Index not supported: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
