@@ -1,7 +1,6 @@
 #include "kiln_plugin.h"
 
-void handle_query_contract_id(void *parameters) {
-    ethQueryContractID_t *msg = (ethQueryContractID_t *) parameters;
+void handle_query_contract_id(ethQueryContractID_t *msg) {
     const context_t *context = (const context_t *) msg->pluginContext;
 
     strlcpy(msg->name, PLUGIN_NAME, msg->nameLength);
@@ -43,6 +42,18 @@ void handle_query_contract_id(void *parameters) {
 
         case KILN_V2_CLAIM:
             strlcpy(msg->version, "Claim", msg->versionLength);
+            break;
+
+        case KILN_LR_DEPOSIT_INTO_STRATEGY:
+            strlcpy(msg->version, "Liquid Restaking", msg->versionLength);
+            break;
+
+        case KILN_LR_QUEUE_WITHDRAWAL:
+            strlcpy(msg->version, "Liquid Restaking", msg->versionLength);
+            break;
+
+        case KILN_LR_COMPLETE_QUEUED_WITHDRAWAL:
+            strlcpy(msg->version, "Liquid Restaking", msg->versionLength);
             break;
 
         default:

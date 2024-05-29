@@ -1,7 +1,6 @@
 #include "kiln_plugin.h"
 
-void handle_finalize(void *parameters) {
-    ethPluginFinalize_t *msg = (ethPluginFinalize_t *) parameters;
+void handle_finalize(ethPluginFinalize_t *msg) {
     context_t *context = (context_t *) msg->pluginContext;
 
     msg->uiType = ETH_UI_TYPE_GENERIC;
@@ -19,6 +18,18 @@ void handle_finalize(void *parameters) {
         case KILN_V2_REQUEST_EXIT:
         case KILN_V2_MULTICLAIM:
         case KILN_V2_CLAIM:
+            msg->numScreens = 1;
+            msg->result = ETH_PLUGIN_RESULT_OK;
+            break;
+        case KILN_LR_DEPOSIT_INTO_STRATEGY:
+            msg->numScreens = 3;
+            msg->result = ETH_PLUGIN_RESULT_OK;
+            break;
+        case KILN_LR_QUEUE_WITHDRAWAL:
+            msg->numScreens = 2;
+            msg->result = ETH_PLUGIN_RESULT_OK;
+            break;
+        case KILN_LR_COMPLETE_QUEUED_WITHDRAWAL:
             msg->numScreens = 1;
             msg->result = ETH_PLUGIN_RESULT_OK;
             break;

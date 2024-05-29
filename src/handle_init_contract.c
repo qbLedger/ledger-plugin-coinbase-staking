@@ -1,18 +1,7 @@
 #include "kiln_plugin.h"
+#include "plugin_utils.h"
 
-static int find_selector(uint32_t selector, const uint32_t *selectors, size_t n, selector_t *out) {
-    for (selector_t i = 0; i < n; i++) {
-        if (selector == selectors[i]) {
-            *out = i;
-            return 0;
-        }
-    }
-    return -1;
-}
-
-void handle_init_contract(void *parameters) {
-    ethPluginInitContract_t *msg = (ethPluginInitContract_t *) parameters;
-
+void handle_init_contract(ethPluginInitContract_t *msg) {
     if (msg->interfaceVersion != ETH_PLUGIN_INTERFACE_VERSION_LATEST) {
         msg->result = ETH_PLUGIN_RESULT_UNAVAILABLE;
         return;
@@ -28,9 +17,17 @@ void handle_init_contract(void *parameters) {
 
     memset(context, 0, sizeof(*context));
 
-    uint32_t selector = U4BE(msg->selector, 0);
-    if (find_selector(selector, KILN_SELECTORS, NUM_SELECTORS, &context->selectorIndex)) {
+    size_t index;
+    if (!find_selector(U4BE(msg->selector, 0), KILN_SELECTORS, NUM_SELECTORS, &index)) {
+        PRINTF("Error: selector not found!\n");
         msg->result = ETH_PLUGIN_RESULT_UNAVAILABLE;
+        return;
+    }
+    context->selectorIndex = index;
+    // check for overflow
+    if ((size_t) context->selectorIndex != index) {
+        PRINTF("Error: overflow detected on selector index!\n");
+        msg->result = ETH_PLUGIN_RESULT_ERROR;
         return;
     }
 
@@ -43,7 +40,6 @@ void handle_init_contract(void *parameters) {
         case KILN_V1_WITHDRAW:
         case KILN_V1_WITHDRAW_EL:
         case KILN_V1_WITHDRAW_CL:
-            context->next_param = WITHDRAW_VALIDATION_OFFSET;
             break;
 
         case KILN_V1_BATCH_WITHDRAW:
@@ -58,6 +54,16 @@ void handle_init_contract(void *parameters) {
         case KILN_V2_REQUEST_EXIT:
         case KILN_V2_MULTICLAIM:
         case KILN_V2_CLAIM:
+            break;
+
+        case KILN_LR_DEPOSIT_INTO_STRATEGY:
+            context->next_param = LR_DEPOSIT_INTO_STRATEGY_STRATEGY;
+            break;
+        case KILN_LR_QUEUE_WITHDRAWAL:
+            context->next_param = LR_QUEUE_WITHDRAWAL_STRATEGY_INDEXES_OFFSET;
+            break;
+        case KILN_LR_COMPLETE_QUEUED_WITHDRAWAL:
+            context->next_param = LR_COMPLETE_QUEUED_WITHDRAWAL_QUEUEDWITHDRAWAL_OFFSET;
             break;
 
         default:
