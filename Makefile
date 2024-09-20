@@ -13,7 +13,7 @@
 # * contact@kiln.fi
 # ********************************************************************************
 
-APPNAME = "CoinbaseStaking"
+APPNAME = "Coinbase"
 
 # Application version
 APPVERSION_M = 2

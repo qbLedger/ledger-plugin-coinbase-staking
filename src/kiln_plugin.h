@@ -21,7 +21,7 @@
 #include "cx.h"
 #include <ctype.h>
 
-#define PLUGIN_NAME "CoinbaseStaking"
+#define PLUGIN_NAME "Coinbase"
 
 // ADDRESS_STR_LEN is 0x + addr + \0
 #define ADDRESS_STR_LEN 43
