@@ -10,8 +10,8 @@ Smart contracts covered by the plugin:
 
 | Network | Version | Smart Contract                        | Address                                      |
 | ------- | ------- | ------------------------------------- | -------------------------------------------- |
-| Mainnet | v2.2    | OCV2-N20 - CoinbaseStaking On-Chain v2 Native20 | `0x2e3956e1ee8b44ab826556770f69e3b9ca04a2a7` |
-| Mainnet | v2.2    | OCV2-EQ - CoinbaseStaking On-Chain v2 ExitQueue | `0x86358f7b33b599c484e0335b8ee4f7f7f92d8b60` |
+| Mainnet | v2.2    | OCV2-N20 - Coinbase On-Chain v2 Native20 | `0x2e3956e1ee8b44ab826556770f69e3b9ca04a2a7` |
+| Mainnet | v2.2    | OCV2-EQ - Coinbase On-Chain v2 ExitQueue | `0x86358f7b33b599c484e0335b8ee4f7f7f92d8b60` |
 
 
 ## Functions

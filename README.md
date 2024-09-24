@@ -108,8 +108,8 @@ Smart contracts covered by this plugin are:
 ks
 | Network | Name | Address |
 | ------- | ----------------------------- | -------------------------------------------- |
-| Mainnet | CoinbaseStaking On-Chain v2 Native20 | `0x2e3956e1ee8b44ab826556770f69e3b9ca04a2a7` |
-| Mainnet | CoinbaseStaking On-Chain v2 ExitQueue | `0x86358f7b33b599c484e0335b8ee4f7f7f92d8b60` |
+| Mainnet | Coinbase On-Chain v2 Native20 | `0x2e3956e1ee8b44ab826556770f69e3b9ca04a2a7` |
+| Mainnet | Coinbase On-Chain v2 ExitQueue | `0x86358f7b33b599c484e0335b8ee4f7f7f92d8b60` |
 
 ## Clearsigning
 
