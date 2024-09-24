@@ -66,7 +66,7 @@ function zemu(device, func) {
     let elf_path;
     let lib_elf;
     elf_path = device.eth_path;
-    lib_elf = { CoinbaseStaking: device.path };
+    lib_elf = { Coinbase: device.path };
     const sim = new Zemu(elf_path, lib_elf);
     try {
       await sim.start({ ...sim_options_nano, model: device.name });

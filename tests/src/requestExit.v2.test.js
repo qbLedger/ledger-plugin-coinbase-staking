@@ -7,7 +7,7 @@ import { ledgerService } from '@ledgerhq/hw-app-eth';
 
 const contractAddr = '0x2e3956e1ee8b44ab826556770f69e3b9ca04a2a7';
 
-const pluginName = 'CoinbaseStaking';
+const pluginName = 'Coinbase';
 const abi_path = `../cal/abis/${contractAddr}.json`;
 const abi = require(abi_path);
 
